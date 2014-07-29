@@ -5,5 +5,9 @@ HospitalAssist
 
 Web
 =============
-BootStrap V3.2.0
-Jquery 1.11.0
+Bootstrap v3.2.0
+jquery-1.11.0.js
+struts v2.3.16.3
+Hadoop v2.2.0
+HBase v0.98
+Spark v1.0.1
