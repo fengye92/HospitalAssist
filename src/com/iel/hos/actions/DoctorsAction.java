@@ -11,16 +11,15 @@ public class DoctorsAction {
 	}
 	
 	/**
-	   * µÇÂ¼
-	   * @return
-	   */
-		public String checkLogin(){
-			System.out.println(user);
-			System.out.println(passwd);
-			if(this.user.equals("wyk")&&this.passwd.equals("123"))
+   * µÇÂ¼
+   * @return
+   */
+	public String checkLogin(){
+		System.out.println(user);
+		System.out.println(passwd);
+		if(this.user.equals("wyk")&&this.passwd.equals("123"))
 			return "success";
-				else
+		else
 			return "error";
-		
-		}
+	}
 }

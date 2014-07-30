@@ -6,7 +6,7 @@
 	<display-name>MyStruts</display-name>
 
 	<welcome-file-list>
-		<welcome-file>login.html</welcome-file>
+		<welcome-file>/pages/login.jsp</welcome-file>
 	</welcome-file-list>
 	
 	<filter>

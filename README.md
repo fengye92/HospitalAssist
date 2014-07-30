@@ -1,6 +1,6 @@
 HospitalAssist
 ==============
-
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/bootstrap.svg)](https://saucelabs.com/u/bootstrap)
 
 
 Version
