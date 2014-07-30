@@ -15,6 +15,7 @@ public class DoctorsAction {
 	}
 	
 	/**
+<<<<<<< HEAD
 	   * µÇÂ¼
 	   * @return
 	 * @throws Exception 
@@ -26,10 +27,23 @@ public class DoctorsAction {
 			this.docService=new DoctorsService();
 			this.docService.checkLogin(user,passwd);
 			if(this.user.equals("wyk")&&this.passwd.equals("123"))
+=======
+   * µÇÂ¼
+   * @return
+   */
+	public String checkLogin(){
+		System.out.println(user);
+		System.out.println(passwd);
+		if(this.user.equals("wyk")&&this.passwd.equals("123"))
+>>>>>>> origin/master
 			return "success";
-				else
+		else
 			return "error";
+<<<<<<< HEAD
 			
 		
 		}
+=======
+	}
+>>>>>>> origin/master
 }
