@@ -13,17 +13,15 @@ public class DoctorsAction {
 	   * @return
 	 * @throws Exception 
 	   */
-		public String checkLogin() throws Exception{
+	public String checkLogin() throws Exception{
 			
-			System.out.println(doc.getDocName());
-			System.out.println(doc.getDocPasswd());
-			this.docService=new DoctorsService();
-			this.docService.checkLogin(doc.getDocName(),doc.getDocPasswd());
-			System.out.println(this.doc.getDocName());
-			return "success";
-			
+		System.out.println(doc.getDocName());
+		System.out.println(doc.getDocPasswd());
+		this.docService=new DoctorsService();
+		this.docService.checkLogin(doc);
+		return "success";
 		
-		}
+	}
 		
 	public Doctor getDoc() {
 		return doc;
