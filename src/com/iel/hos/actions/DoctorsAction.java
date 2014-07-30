@@ -1,49 +1,34 @@
 package com.iel.hos.actions;
 
+import com.iel.hos.beans.Doctor;
 import com.iel.hos.services.DoctorsService;
 
 public class DoctorsAction {
-	private String user;
-	private String passwd;
+
 	private DoctorsService docService;
-	
-	public void setUser(String user) {
-		this.user = user;
-	}
-	public void setPasswd(String passwd) {
-		this.passwd = passwd;
-	}
+	private Doctor doc;
 	
 	/**
-<<<<<<< HEAD
 	   * µÇÂ¼
 	   * @return
 	 * @throws Exception 
 	   */
 		public String checkLogin() throws Exception{
-			System.out.println(user);
-			System.out.println(passwd);
 			
+			System.out.println(doc.getDocName());
+			System.out.println(doc.getDocPasswd());
 			this.docService=new DoctorsService();
-			this.docService.checkLogin(user,passwd);
-			if(this.user.equals("wyk")&&this.passwd.equals("123"))
-=======
-   * µÇÂ¼
-   * @return
-   */
-	public String checkLogin(){
-		System.out.println(user);
-		System.out.println(passwd);
-		if(this.user.equals("wyk")&&this.passwd.equals("123"))
->>>>>>> origin/master
+			this.docService.checkLogin(doc.getDocName(),doc.getDocPasswd());
+			System.out.println(this.doc.getDocName());
 			return "success";
-		else
-			return "error";
-<<<<<<< HEAD
 			
 		
 		}
-=======
+		
+	public Doctor getDoc() {
+		return doc;
 	}
->>>>>>> origin/master
+	public void setDoc(Doctor doc) {
+		this.doc = doc;
+	}
 }

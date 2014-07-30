@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
       <form class="form-signin" role="form" method="post" action="login.action">
         <h2 class="form-signin-heading">医学数据管理系统</h2>
-        <input name="user" type="userName" class="form-control" placeholder="用户名" required="" autofocus="">
-        <input name="passwd" type="password" class="form-control" placeholder="密码" required="">
+        <input name="doc.docName" type="userName" class="form-control" placeholder="用户名" required="" autofocus="">
+        <input name="doc.docPasswd" type="password" class="form-control" placeholder="密码" required="">
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
       </form>
