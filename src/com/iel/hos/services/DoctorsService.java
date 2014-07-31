@@ -11,6 +11,7 @@ public class DoctorsService {
 		docDao=new DoctorsDao();
 		
 		docDao.checkLogin();
+		
 		return null;
 	}
 }
