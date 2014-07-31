@@ -36,3 +36,4 @@ Icon
 .Trashes
 #忽略build文件
 build/
+*.class
