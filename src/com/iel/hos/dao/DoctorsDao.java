@@ -1,6 +1,12 @@
 package com.iel.hos.dao;
 
+<<<<<<< HEAD
 import java.io.IOException;              
+=======
+import java.io.IOException;     
+import java.util.ArrayList;     
+import java.util.List;
+>>>>>>> origin/master
 import org.apache.hadoop.conf.Configuration;     
 import org.apache.hadoop.hbase.HBaseConfiguration;     
 import org.apache.hadoop.hbase.HColumnDescriptor;     
@@ -29,7 +35,12 @@ public class DoctorsDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+<<<<<<< HEAD
 	}
+=======
+		          
+        }
+>>>>>>> origin/master
         
 	public static void creatTable(String tableName, String[] familys) throws Exception {       
          HBaseAdmin admin = new HBaseAdmin(configuration);       

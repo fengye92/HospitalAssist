@@ -8,6 +8,7 @@ import com.iel.hos.dao.DoctorsDao;
 public class DoctorsService {
 	private DoctorsDao docDao;
 	
+
 	public Map<String, String> checkLogin(Doctor doc) throws Exception{
 		//docDao=new DoctorsDao();
 		BaseDao base=new BaseDao();
@@ -25,6 +26,7 @@ public class DoctorsService {
 		
 		//base.creatTable("aasf", column);
 		//docDao.checkLogin();
+
 		return null;
 	}
 }

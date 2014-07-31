@@ -9,23 +9,28 @@ public class DoctorsAction {
 	private Doctor doc;
 	
 	/**
-	   * ��¼
-	   * @return
-	 * @throws Exception 
-	   */
+	 *  µÇÂ¼
+	 *   @return
+	 *    @throws Exception 
+	 *   */
+	
 	public String checkLogin() throws Exception{
-			
+		
 		System.out.println(doc.getDocName());
 		System.out.println(doc.getDocPasswd());
+		
 		this.docService=new DoctorsService();
 		this.docService.checkLogin(doc);
-		return "success";
+		System.out.println(this.doc.getDocName());
 		
+		return "success";
+
 	}
 		
 	public Doctor getDoc() {
 		return doc;
 	}
+	
 	public void setDoc(Doctor doc) {
 		this.doc = doc;
 	}
