@@ -4,10 +4,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import org.apache.hadoop.conf.Configuration;  
+import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.HBaseConfiguration;  
 import org.apache.hadoop.hbase.HColumnDescriptor;  
 import org.apache.hadoop.hbase.HTableDescriptor;  
-import org.apache.hadoop.hbase.KeyValue;  
+import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Delete;  
 import org.apache.hadoop.hbase.client.Get;  
 import org.apache.hadoop.hbase.client.HBaseAdmin;  
@@ -41,7 +42,7 @@ public class BaseDao {
 		if (admin.tableExists(tableName)) {       
 			System.out.println("table already exists!");       
 		} else {       
-			HTableDescriptor tableDesc = new HTableDescriptor(tableName);       
+			HTableDescriptor tableDesc = new HTableDescriptor(TableName.valueOf(tableName));       
 			for(int i=0; i<familys.length; i++){       
 				tableDesc.addFamily(new HColumnDescriptor(familys[i]));       
 			}       
@@ -71,8 +72,11 @@ public class BaseDao {
 	 * 删除一条记录
 	 * 参数 表名， 行键
 	 */
-	 public static void delRecord (String tableName, String rowKey) throws IOException{       
+	 @SuppressWarnings("unchecked")
+	public static void delRecord (String tableName, String rowKey) throws IOException{       
 		HTable table = new HTable(conf, tableName);       
+		
+		@SuppressWarnings("rawtypes")
 		List list = new ArrayList();       
 		Delete del = new Delete(rowKey.getBytes());       
 		list.add(del);       
@@ -89,12 +93,12 @@ public class BaseDao {
 		Get get = new Get(rowKey.getBytes());       
 		Result rs = table.get(get);  
 		
-		for(KeyValue kv : rs.raw()){       
-			System.out.print(new String(kv.getRow()) + " " );       
-			System.out.print(new String(kv.getFamily()) + ":" );       
-			System.out.print(new String(kv.getQualifier()) + " " );       
-			System.out.print(kv.getTimestamp() + " " );       
-			System.out.println(new String(kv.getValue()));       
+		for(Cell cell : rs.rawCells()){       
+			System.out.print(new String(cell.getRowArray()) + " " );       
+			System.out.print(new String(cell.getFamilyArray()) + ":" );       
+			System.out.print(new String(cell.getQualifierArray()) + " " );       
+			System.out.print(cell.getTimestamp() + " " );       
+			System.out.println(new String(cell.getValueArray()));       
 		}       
 	}       
                  
@@ -102,21 +106,21 @@ public class BaseDao {
 	 * 查询表中所有数据
 	 *参数 表名
 	 */
-	public static void getAllRecord (String tableName) {       
+	public void getAllRecord (String tableName) {       
 		try{       
 		
 			HTable table = new HTable(conf, tableName);    
 			Scan s = new Scan();  
-			System.out.println("0");
+
 			ResultScanner ss = table.getScanner(s);       
-			System.out.println("1");
+
 			for(Result r:ss){       
-				for(KeyValue kv : r.raw()){       
-					System.out.print(new String(kv.getRow()) + " ");       
-					System.out.print(new String(kv.getFamily()) + ":");       
-					System.out.print(new String(kv.getQualifier()) + " ");       
-					System.out.print(kv.getTimestamp() + " ");       
-					System.out.println(new String(kv.getValue()));       
+				for(Cell cell : r.rawCells()){       
+					System.out.print(new String(cell.getRowArray()) + " ");       
+					System.out.print(new String(cell.getFamilyArray()) + ":");       
+					System.out.print(new String(cell.getQualifierArray()) + " ");       
+					System.out.print(cell.getTimestamp() + " ");       
+					System.out.println(new String(cell.getValueArray()));       
 				}       
 			}       
 		} catch (IOException e){       
@@ -149,7 +153,7 @@ public class BaseDao {
 		HBaseAdmin admin = new HBaseAdmin(conf);       
 	
 		if (admin.tableExists(tableName)) {       
-			HTableDescriptor tableDesc = new HTableDescriptor(tableName);       
+			HTableDescriptor tableDesc = new HTableDescriptor(TableName.valueOf(tableName));       
 			tableDesc.addFamily(new HColumnDescriptor(family));       
 			
 			System.out.println("add column family in " + tableName + " ok.");       

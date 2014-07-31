@@ -1,12 +1,11 @@
 package com.iel.hos.dao;
 
 import java.io.IOException;     
-import java.util.ArrayList;     
-import java.util.List;
 import org.apache.hadoop.conf.Configuration;     
 import org.apache.hadoop.hbase.HBaseConfiguration;     
 import org.apache.hadoop.hbase.HColumnDescriptor;     
 import org.apache.hadoop.hbase.HTableDescriptor;         
+import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.HBaseAdmin;     
     
           
@@ -27,7 +26,7 @@ public class DoctorsDao {
 		column[1]="test2";
 		
 		try {
-			this.creatTable("wyktest1", column);
+			creatTable("wyktest1", column);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -40,7 +39,7 @@ public class DoctorsDao {
 		if (admin.tableExists(tableName)) {       
 			System.out.println("table already exists!");       
 		} else {       
-			HTableDescriptor tableDesc = new HTableDescriptor(tableName);       
+			HTableDescriptor tableDesc = new HTableDescriptor(TableName.valueOf(tableName));       
 			for(int i=0; i<familys.length; i++){       
 				tableDesc.addFamily(new HColumnDescriptor(familys[i]));       
 				
