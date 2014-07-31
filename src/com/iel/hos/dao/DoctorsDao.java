@@ -6,6 +6,9 @@ import java.io.IOException;
 import java.io.IOException;     
 import java.util.ArrayList;     
 import java.util.List;
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
 >>>>>>> origin/master
 import org.apache.hadoop.conf.Configuration;     
 import org.apache.hadoop.hbase.HBaseConfiguration;     
@@ -36,8 +39,11 @@ public class DoctorsDao {
 			e.printStackTrace();
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 	}
 =======
+=======
+>>>>>>> origin/master
 		          
         }
 >>>>>>> origin/master
