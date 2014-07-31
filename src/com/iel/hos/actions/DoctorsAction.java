@@ -9,7 +9,6 @@ public class DoctorsAction {
 	private Doctor doc;
 	
 	/**
-	 *  µÇÂ¼
 	 *   @return
 	 *    @throws Exception 
 	 *   */
