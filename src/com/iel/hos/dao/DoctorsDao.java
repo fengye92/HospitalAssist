@@ -1,15 +1,8 @@
 package com.iel.hos.dao;
 
-<<<<<<< HEAD
-import java.io.IOException;              
-=======
 import java.io.IOException;     
 import java.util.ArrayList;     
 import java.util.List;
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
->>>>>>> origin/master
 import org.apache.hadoop.conf.Configuration;     
 import org.apache.hadoop.hbase.HBaseConfiguration;     
 import org.apache.hadoop.hbase.HColumnDescriptor;     
@@ -23,7 +16,7 @@ public class DoctorsDao {
 	
 	public void checkLogin() throws IOException{    
 		configuration = null;    
-       	configuration =HBaseConfiguration.create();  
+		configuration =HBaseConfiguration.create();  
 		configuration.set("hbase.zookeeper.quorum", "192.168.0.201");
 		configuration.set("hbase.zookeeper.property.clientPort", "2181");
 		configuration.set("hbase.master", "192.168.0.201");
@@ -32,33 +25,31 @@ public class DoctorsDao {
 		String column[] = new String[2] ;
 		column[0]="test1";
 		column[1]="test2";
+		
 		try {
 			this.creatTable("wyktest1", column);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-<<<<<<< HEAD
-<<<<<<< HEAD
+		
 	}
-=======
-=======
->>>>>>> origin/master
-		          
-        }
->>>>>>> origin/master
-        
+	
 	public static void creatTable(String tableName, String[] familys) throws Exception {       
-         HBaseAdmin admin = new HBaseAdmin(configuration);       
-         if (admin.tableExists(tableName)) {       
-             System.out.println("table already exists!");       
-         } else {       
-             HTableDescriptor tableDesc = new HTableDescriptor(tableName);       
-             for(int i=0; i<familys.length; i++){       
-                 tableDesc.addFamily(new HColumnDescriptor(familys[i]));       
-             }       
-             admin.createTable(tableDesc);       
-             System.out.println("create table " + tableName + " ok.");       
-         }        
-    }   
-}    
+		HBaseAdmin admin = new HBaseAdmin(configuration);       
+		if (admin.tableExists(tableName)) {       
+			System.out.println("table already exists!");       
+		} else {       
+			HTableDescriptor tableDesc = new HTableDescriptor(tableName);       
+			for(int i=0; i<familys.length; i++){       
+				tableDesc.addFamily(new HColumnDescriptor(familys[i]));       
+				
+			}       
+			
+			admin.createTable(tableDesc);       
+			System.out.println("create table " + tableName + " ok.");       
+			
+		}        
+		
+	}   
+}
