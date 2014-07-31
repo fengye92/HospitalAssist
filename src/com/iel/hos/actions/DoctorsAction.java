@@ -20,9 +20,10 @@ public class DoctorsAction {
 		System.out.println(doc.getDocPasswd());
 		
 		this.docService=new DoctorsService();
-		this.docService.checkLogin(doc.getDocName(),doc.getDocPasswd());
+		this.docService.checkLogin(doc);
 		System.out.println(this.doc.getDocName());
 		return "success";
+
 	}
 		
 	public Doctor getDoc() {
