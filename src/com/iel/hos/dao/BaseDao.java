@@ -43,7 +43,7 @@ public class BaseDao {
 		} else {       
 			HTableDescriptor tableDesc = new HTableDescriptor(tableName);       
 			for(int i=0; i<familys.length; i++){       
-			tableDesc.addFamily(new HColumnDescriptor(familys[i]));       
+				tableDesc.addFamily(new HColumnDescriptor(familys[i]));       
 			}       
 			admin.createTable(tableDesc);       
 			System.out.println("create table " + tableName + " ok.");       
