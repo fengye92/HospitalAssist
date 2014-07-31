@@ -9,19 +9,20 @@ public class DoctorsAction {
 	private Doctor doc;
 	
 	/**
-	 *  ��¼
+	 *  µÇÂ¼
 	 *   @return
 	 *    @throws Exception 
 	 *   */
 	
 	public String checkLogin() throws Exception{
-			
+		
 		System.out.println(doc.getDocName());
 		System.out.println(doc.getDocPasswd());
 		
 		this.docService=new DoctorsService();
 		this.docService.checkLogin(doc);
 		System.out.println(this.doc.getDocName());
+		
 		return "success";
 
 	}
@@ -29,6 +30,7 @@ public class DoctorsAction {
 	public Doctor getDoc() {
 		return doc;
 	}
+	
 	public void setDoc(Doctor doc) {
 		this.doc = doc;
 	}
