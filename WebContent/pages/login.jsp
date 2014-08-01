@@ -3,7 +3,15 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%
+Object obj = session.getAttribute("userId");
+String contextPath = request.getContextPath();
 
+if(obj==null){
+}else{
+	response.sendRedirect(contextPath+"/pages/main.jsp");
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
