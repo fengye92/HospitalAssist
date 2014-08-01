@@ -9,7 +9,7 @@
 	<package name="default" namespace="/" extends="struts-default">
         
         <action name="login" class="com.iel.hos.actions.UserAction" method="checkLogin">
-      	<result name="success">/pages/main.jsp</result>
+      	<result name="success3">/pages/main.jsp</result>
       	<result name="error">/pages/404.jsp</result>
       	</action>
     </package>

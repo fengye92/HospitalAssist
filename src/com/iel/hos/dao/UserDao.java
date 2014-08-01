@@ -15,6 +15,7 @@ public class UserDao {
 	public int checkLogin(String userId, String passwd) throws IOException{    
 		Map<String, String> result = null;
 		try {
+			System.out.println(userId);
 			result =baseDao.getOneCell("user", userId, "info","pwd" );
 			//result = baseDao.getOneRecord("user", userId);
 			//result = baseDao.getOneRecord("user", userId);
@@ -65,7 +66,7 @@ public class UserDao {
 		try{
 			String[] values = new String[3];
 			values[0] = user.getUserName();
-			values[1] = "000";
+			values[1] = user.getUserPasswd();
 			values[2] = "" + user.getPermission();
 			
 			String[] family = {"info", "info", "info"};
@@ -76,5 +77,31 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	public int EditPwd(String userId,String exPwd,String newPwd)
+	{
+		System.out.print("bearbearsw");
+		Map<String, String> result = null;
+		try {
+			result =baseDao.getOneCell("user", userId, "info","pwd" );
+		}
+		catch(Exception ex)
+		{
+			ex.printStackTrace();
+		}
+		if(exPwd.equals(result.get("value")))
+		{
+			System.out.print("lylsuccess");
+			try {
+				baseDao.addOneCellRecord("user", userId, "info", "pwd", newPwd);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return 1;
+		}
+		else{
+			return 0;
+		}
 	}
 }

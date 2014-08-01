@@ -1,6 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <nav class="navbar navbar-static-top navbar-default" role="navigation" style="margin-bottom:0">
-
+<%HttpSession Session = request.getSession();          
+String name = (String)Session.getAttribute("username");         
+%>
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
 		<a class="navbar-brand" href="pages/main.jsp">医学数据管理系统</a>
@@ -11,14 +13,14 @@
 		
 	<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			<i class="fa fa-user"></i><span class="pic-title">管理员</span><b class="caret"></b>
+			<i class="fa fa-user"></i><span class="pic-title"></span><b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
 			<li >
 				<a href="#"><i class="fa fa-fw fa-gear"></i><span class="pic-title">用户设置</span></a>
 			</li>
             <li>
-                <a href="#"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
+                <a href="pages/editPwd.jsp"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a>
