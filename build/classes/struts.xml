@@ -8,7 +8,7 @@
 	<constant name="struts.devMode" value="true" />
 	<package name="default" namespace="/" extends="struts-default">
         
-        <action name="login" class="com.iel.hos.actions.DoctorsAction" method="checkLogin">
+        <action name="login" class="com.iel.hos.actions.UserAction" method="checkLogin">
       	<result name="success">/pages/main.jsp</result>
       	<result name="error">/pages/404.jsp</result>
       	</action>

@@ -2,7 +2,10 @@ package com.iel.hos.dao;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.hadoop.conf.Configuration;  
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.HBaseConfiguration;  
@@ -52,28 +55,56 @@ public class BaseDao {
 	}
 	
 	/*
-	 * 添加一条记录
+	 * 添加一个cell记录
 	 * 参数 表名， 行键， 列族名，列名，值
 	 */
 	
-	public static void addRecord (String tableName, String rowKey, String family, String qualifier, String value)throws Exception{       
+	public int addOneCellRecord (String tableName, String rowKey, String family, String qualifier, String value)throws Exception{       
 		try {       
-			HTable table = new HTable(conf, tableName);       
+			HTable table = new HTable(conf, tableName); 
+			
 			Put put = new Put(Bytes.toBytes(rowKey));       
 			put.add(Bytes.toBytes(family),Bytes.toBytes(qualifier),Bytes.toBytes(value));       
-			table.put(put);       
+			table.put(put);     
+			
 			System.out.println("insert recored " + rowKey + " to table " + tableName +" ok.");       
+			
+			return 0;
 		} catch (IOException e) {       
 			e.printStackTrace();       
 		}       
+		return 0;
 	}
 	
+	/*
+	 * 添加多个记录
+	 * 参数 表名， 行键， 列族名，列名，值
+	 */
+	
+	public int addCellsRecord (String tableName, String rowKey, String family[], String qualifier[], String value[])throws Exception{       
+		try {       
+			HTable table = new HTable(conf, tableName); 
+			
+			Put put = new Put(Bytes.toBytes(rowKey));
+			for(int i=0; i < family.length; i++){
+				put.add(Bytes.toBytes(family[i]),Bytes.toBytes(qualifier[i]),Bytes.toBytes(value[i]));       
+			}
+			table.put(put);     
+			
+			System.out.println("insert recored " + rowKey + " to table " + tableName +" ok.");       
+			
+			return 0;
+		} catch (IOException e) {       
+			e.printStackTrace();       
+		}       
+		return 0;
+	}
 	/*
 	 * 删除一条记录
 	 * 参数 表名， 行键
 	 */
 	 @SuppressWarnings("unchecked")
-	public static void delRecord (String tableName, String rowKey) throws IOException{       
+	public void delRecord (String tableName, String rowKey) throws IOException{       
 		HTable table = new HTable(conf, tableName);       
 		
 		@SuppressWarnings("rawtypes")
@@ -85,22 +116,44 @@ public class BaseDao {
 	}
 	
 	/*
-	 * 查询一条记录
+	 * 查询一行记录
 	 * 参数 表名， 行键
 	 */
-	public static void getOneRecord (String tableName, String rowKey) throws IOException{       
-		HTable table = new HTable(conf, tableName);       
-		Get get = new Get(rowKey.getBytes());       
+	public Map<String, String> getOneRecord (String tableName, String rowKey) throws IOException{       
+		HTable table = new HTable(conf, tableName); 
+		System.out.println(tableName + rowKey);
+		Get get = new Get(rowKey.getBytes());    
+		
+		Map<String,String> result = new HashMap<String,String>();
+
 		Result rs = table.get(get);  
 		
-		for(Cell cell : rs.rawCells()){       
-			System.out.print(new String(cell.getRowArray()) + " " );       
-			System.out.print(new String(cell.getFamilyArray()) + ":" );       
-			System.out.print(new String(cell.getQualifierArray()) + " " );       
-			System.out.print(cell.getTimestamp() + " " );       
-			System.out.println(new String(cell.getValueArray()));       
-		}       
+		for(Cell cell : rs.rawCells()){  
+			System.out.println(new String(cell.getValueArray()));
+			result.put(new String(cell.getFamilyArray()) +" : " + new String(cell.getQualifierArray()),new String(cell.getValueArray()));	
+		}    
+		
+		return result;
+
 	}       
+	
+	/*
+	 * 查询某一个cell的数据（没添加时间戳参数，取得的是最新版本的数据）
+	 * 参数 表名  行键   family name， column name 
+	 */
+	public Map<String, String> getOneCell (String tableName, String rowKey, String family, String column) throws IOException{
+		HTable table = new HTable(conf, tableName);
+		Get get = new Get(rowKey.getBytes());
+		//get.addFamily(family);
+		
+		//get.addColumn(family.getBytes(), column.getBytes());
+		Map<String, String> result = new HashMap<String, String>();
+		
+		Result rs = table.get(get);  
+		
+		result.put("value",new String(rs.getValue(Bytes.toBytes(family), Bytes.toBytes(column))));
+		return result;
+	}
                  
 	/*
 	 * 查询表中所有数据
