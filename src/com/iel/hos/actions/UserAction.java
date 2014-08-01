@@ -1,5 +1,7 @@
 package com.iel.hos.actions;
 
+import javax.servlet.http.HttpSession;
+import org.apache.struts2.ServletActionContext;
 import com.iel.hos.beans.User;
 import com.iel.hos.services.UserService;
 
@@ -26,6 +28,17 @@ public class UserAction {
 		this.userService = new UserService();
 		this.user.setPermission(this.userService.checkLogin(user));
 		
+		if(this.user.getPermission() == 3){
+			
+			HttpSession session = ServletActionContext.getRequest().getSession();
+			
+			System.out.println(session.getId());
+			System.out.println(session.isNew());
+			session.setAttribute("userId", user.getUserId());
+			session.setAttribute("userPwd", user.getUserPasswd());
+			session.setAttribute("userPermission", user.getPermission());
+
+		}
 		return "success";
 
 	}
