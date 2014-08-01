@@ -28,8 +28,9 @@ public class UserAction {
 		this.userService = new UserService();
 		this.user.setPermission(this.userService.checkLogin(user));
 
+		
 		if(this.user.getPermission() == 3){
-
+			
 			HttpSession session = ServletActionContext.getRequest().getSession();
 
 			System.out.println(session.getId());

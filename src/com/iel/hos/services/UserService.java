@@ -13,6 +13,12 @@ public class UserService {
 		return userDao.checkLogin(user.getUserId(),user.getUserPasswd());
 	}
 	
+	public String getUserOneCell(String userId, String attr) throws Exception{
+		userDao = new UserDao();
+		
+		return userDao.getUserOneCell(userId, attr);
+	}
+	
 	public int addUser(User user) throws Exception{
 		userDao = new UserDao();
 		
@@ -30,6 +36,6 @@ public class UserService {
 		// TODO Auto-generated method stub
 		userDao = new UserDao();
 		
-		return userDao.addUser(user);
+		return userDao.modifyUser(user);
 	}
 }

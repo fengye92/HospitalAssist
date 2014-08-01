@@ -110,6 +110,7 @@ public class BaseDao {
 		@SuppressWarnings("rawtypes")
 		List list = new ArrayList();       
 		Delete del = new Delete(rowKey.getBytes());       
+		
 		list.add(del);       
 		table.delete(list);       
 		System.out.println("del recored " + rowKey + " ok.");       
@@ -128,13 +129,25 @@ public class BaseDao {
 
 		Result rs = table.get(get);  
 		
-		for(Cell cell : rs.rawCells()){  
-			System.out.println(new String(cell.getValueArray()));
-			result.put(new String(cell.getFamilyArray()) +" : " + new String(cell.getQualifierArray()),new String(cell.getValueArray()));	
-		}    
-		
-		return result;
+		if(rs.isEmpty()){
+			result.put("Tag", "error");
+			return result;
+		}else{
+			result.put("Tag", "success");
+			for(Cell cell : rs.rawCells()){
+				
+				byte[] temp =  cell.getFamilyArray();
+				String family = new String(subByteArray(temp, cell.getFamilyOffset(), cell.getFamilyLength()));
+				
+				temp = cell.getQualifierArray();
+				String column = new String(subByteArray(temp, cell.getQualifierOffset(), cell.getQualifierLength()));
 
+				temp = cell.getValueArray();
+				String value = new String(subByteArray(temp, cell.getValueOffset(), cell.getValueLength()));
+				result.put(family +" : " + column, value);	
+			}  
+			return result;
+		}
 	}       
 	
 	/*
@@ -144,9 +157,7 @@ public class BaseDao {
 	public Map<String, String> getOneCell (String tableName, String rowKey, String family, String column) throws IOException{
 		HTable table = new HTable(conf, tableName);
 		Get get = new Get(rowKey.getBytes());
-		//get.addFamily(family);
 		
-		//get.addColumn(family.getBytes(), column.getBytes());
 		Map<String, String> result = new HashMap<String, String>();
 		
 		Result rs = table.get(get);  
@@ -217,4 +228,30 @@ public class BaseDao {
 		return true;
 	}
 	
+	public byte[] subByteArray(byte[] array, int start, int length){
+		if (array.length > start && start + length <= array.length ){
+			byte[] sub = new byte[length];
+			
+			for(int i=0; i<length; i++){
+				sub[i] = array[start+i];
+			}
+			
+			return sub;
+		}
+		return null;
+	}
+	
+	public int checkIsExist (String tableName, String rowKey) throws IOException{       
+		HTable table = new HTable(conf, tableName); 
+
+		Get get = new Get(rowKey.getBytes());    
+		
+		Result rs = table.get(get);  
+		
+		if(rs.isEmpty()){
+			return 0;
+		}else{
+			return 1;
+		}
+	}       
 }
