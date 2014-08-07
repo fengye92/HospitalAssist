@@ -117,7 +117,7 @@ public class UserDao {
 		}
 		return 0;
 	}
-<<<<<<< HEAD
+	
 	public int EditPwd(String userId,String exPwd,String newPwd)
 	{
 		System.out.print("bearbearsw");
@@ -143,8 +143,8 @@ public class UserDao {
 		else{
 			return 0;
 		}
-=======
-
+	}
+	
 	public String getUserOneCell(String userId, String attr) {
 		// TODO Auto-generated method stub
 		Map<String, String> result = null;
@@ -159,6 +159,5 @@ public class UserDao {
 			e.printStackTrace();
 		}
 		return result.get("value");
->>>>>>> origin/master
 	}
 }
