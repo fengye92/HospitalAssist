@@ -46,11 +46,16 @@ function check()
     			<input name="newPwd" type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
     			<label for="exampleInputPassword3">再次输入新密码</label>
     			<input type="password" class="form-control" id="exampleInputPassword3" placeholder="新密码">
-    			<button type="submit" class="btn btn-default" onclick="check()">Submit</button>
+    			<button type="submit" class="btn btn-default" onclick="check()">提交</button>
   			</div>
   			</form>
 		</div>
 	</div>
-	</div>		     
+	</div>	
+		<!-- jQuery Version 1.11.0 -->
+	<script src="js/jquery-1.11.0.js"></script>
+	
+	<!-- Bootstrap Core JavaScript -->
+	<script src="js/bootstrap.min.js"></script>	     
 </body>
 </html>

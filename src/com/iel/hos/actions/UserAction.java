@@ -1,11 +1,7 @@
 package com.iel.hos.actions;
 
-
-
 import javax.servlet.http.HttpSession;
-
 import org.apache.struts2.ServletActionContext;
-
 import com.iel.hos.beans.User;
 import com.iel.hos.services.UserService;
 
@@ -15,7 +11,7 @@ public class UserAction{
 	private User user;
 	private String exPwd;
 	private String newPwd;
-	
+	private String message;
 	
 	public String getNewPwd() {
 		return newPwd;
@@ -80,8 +76,17 @@ public class UserAction{
 
 	public String addUser() throws Exception{
 		this.userService = new UserService();
-		this.userService.addUser(user);
-		return "success";
+		System.out.println(user.getPermission());
+		System.out.println(user.getUserName());
+		
+		if(this.userService.addUser(user)==1){
+			
+			message="success";
+			return "success";
+		}else{
+			message="existingId";
+			return "success";
+		}
 	}
 	
 	public String delUser() throws Exception{
@@ -95,6 +100,7 @@ public class UserAction{
 		this.userService.modifyUser(user);
 		return "success";
 	}
+
 	public String editPwd()throws Exception{
 		this.userService = new UserService();
 		System.out.print("测试"+exPwd);
@@ -109,4 +115,22 @@ public class UserAction{
 			return "pwderror";
 		}
 	}
+	
+	public String logOut(){
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		//session.invalidate();
+		session.removeAttribute("userId");
+		session.removeAttribute("userPwd");
+		session.removeAttribute("userPermission");
+
+		return "success";
 	}
+
+	public String getMessage() {
+		return message;
+	}
+
+	public void setMessage(String message) {
+		this.message = message;
+	}
+}

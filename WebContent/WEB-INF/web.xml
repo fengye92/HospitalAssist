@@ -6,12 +6,12 @@
 	id="WebApp_ID" version="2.5">
 	<display-name>MyStruts</display-name>
 
-<!-- 
+
 	<welcome-file-list>
 		<welcome-file>/pages/main.jsp</welcome-file>
 	</welcome-file-list> 
 	
-	
+<!-- 	
 	
 	<filter>     
 		<filter-name>loginFilter</filter-name>     
