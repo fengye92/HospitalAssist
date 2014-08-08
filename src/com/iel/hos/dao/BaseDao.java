@@ -1,6 +1,7 @@
 package com.iel.hos.dao;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -11,6 +12,7 @@ import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.HBaseConfiguration;  
 import org.apache.hadoop.hbase.HColumnDescriptor;  
 import org.apache.hadoop.hbase.HTableDescriptor;  
+import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Delete;  
 import org.apache.hadoop.hbase.client.Get;  
@@ -27,12 +29,12 @@ public class BaseDao {
 	
 	public BaseDao(){
 		
-		conf = null;
-		conf = HBaseConfiguration.create();  
-		conf.set("hbase.zookeeper.property.clientPort", "2181");  
-		conf.set("hbase.zookeeper.quorum", "192.168.0.201");  
-		conf.set("hbase.master", "192.168.0.201:600000"); 
-		System.out.println(conf.get("hbase.zookeeper.quorum"));
+		setConf(null);
+		setConf(HBaseConfiguration.create());  
+		getConf().set("hbase.zookeeper.property.clientPort", "2181");  
+		getConf().set("hbase.zookeeper.quorum", "192.168.0.201");  
+		getConf().set("hbase.master", "192.168.0.201:600000"); 
+		System.out.println(getConf().get("hbase.zookeeper.quorum"));
 	}
 	
 	/*
@@ -40,7 +42,7 @@ public class BaseDao {
 	 */
 	public static void creatTable(String tableName, String[] familys) throws Exception {       
 		
-		HBaseAdmin admin = new HBaseAdmin(conf);       
+		HBaseAdmin admin = new HBaseAdmin(getConf());       
 	
 		if (admin.tableExists(tableName)) {       
 			System.out.println("table already exists!");       
@@ -61,7 +63,7 @@ public class BaseDao {
 	
 	public int addOneCellRecord (String tableName, String rowKey, String family, String qualifier, String value)throws Exception{       
 		try {       
-			HTable table = new HTable(conf, tableName); 
+			HTable table = new HTable(getConf(), tableName); 
 			
 			Put put = new Put(Bytes.toBytes(rowKey));       
 			put.add(Bytes.toBytes(family),Bytes.toBytes(qualifier),Bytes.toBytes(value));       
@@ -83,7 +85,7 @@ public class BaseDao {
 	
 	public int addCellsRecord (String tableName, String rowKey, String family[], String qualifier[], String value[])throws Exception{       
 		try {       
-			HTable table = new HTable(conf, tableName); 
+			HTable table = new HTable(getConf(), tableName); 
 			
 			Put put = new Put(Bytes.toBytes(rowKey));
 			for(int i=0; i < family.length; i++){
@@ -105,7 +107,7 @@ public class BaseDao {
 	 */
 	 @SuppressWarnings("unchecked")
 	public void delRecord (String tableName, String rowKey) throws IOException{       
-		HTable table = new HTable(conf, tableName);       
+		HTable table = new HTable(getConf(), tableName);       
 		
 		@SuppressWarnings("rawtypes")
 		List list = new ArrayList();       
@@ -121,7 +123,7 @@ public class BaseDao {
 	 * 参数 表名， 行键
 	 */
 	public Map<String, String> getOneRecord (String tableName, String rowKey) throws IOException{       
-		HTable table = new HTable(conf, tableName); 
+		HTable table = new HTable(getConf(), tableName); 
 		System.out.println(tableName + rowKey);
 		Get get = new Get(rowKey.getBytes());    
 		
@@ -155,7 +157,7 @@ public class BaseDao {
 	 * 参数 表名  行键   family name， column name 
 	 */
 	public Map<String, String> getOneCell (String tableName, String rowKey, String family, String column) throws IOException{
-		HTable table = new HTable(conf, tableName);
+		HTable table = new HTable(getConf(), tableName);
 		Get get = new Get(rowKey.getBytes());
 		
 		Map<String, String> result = new HashMap<String, String>();
@@ -170,34 +172,59 @@ public class BaseDao {
 	 * 查询表中所有数据
 	 *参数 表名
 	 */
-	public void getAllRecord (String tableName) {       
-		try{       
+	public void getAllRecord (String tableName) throws IOException {       
+//		try{       
 		
-			HTable table = new HTable(conf, tableName);    
+			HTable table = new HTable(getConf(), tableName);    
 			Scan s = new Scan();  
-
-			ResultScanner ss = table.getScanner(s);       
-
-			for(Result r:ss){       
-				for(Cell cell : r.rawCells()){       
-					System.out.print(new String(cell.getRowArray()) + " ");       
-					System.out.print(new String(cell.getFamilyArray()) + ":");       
-					System.out.print(new String(cell.getQualifierArray()) + " ");       
-					System.out.print(cell.getTimestamp() + " ");       
-					System.out.println(new String(cell.getValueArray()));       
-				}       
-			}       
-		} catch (IOException e){       
-			e.printStackTrace();       
-		}       
+			
+			ResultScanner ss = table.getScanner(s);
+			
+			for(Result r :ss)
+			{
+				System.out.println("\n row"+new String(r.getRow()));
+				for(KeyValue kv:r.raw())
+				{
+				  	System.out.println("family=>"+new String(kv.getFamily(),"utf-8")+
+				  			"value=>"+new String(kv.getValue(),"utf-8")+
+				  			"qualifer=>"+new String(kv.getQualifier(),"utf-8")
+				  	);
+				}
+			}
+			ss.close();
+			
+//			for(Result r:ss){       
+//				System.out.println(r.list().size());
+//				for(Cell cell : r.rawCells()){       
+//					//System.out.println(new String(cell.getRowArray()) + " ");       
+////					System.out.print(new String(cell.getFamilyArray()) + ":");       
+////					System.out.print(new String(cell.getQualifierArray()) + " ");       
+////					System.out.print(cell.getTimestamp() + " "/);       
+////					System.out.println(new String(cell.getValueArray()));
+//					byte[] temp =  cell.getFamilyArray();
+//					String family = new String(subByteArray(temp, cell.getFamilyOffset(), cell.getFamilyLength()));
+//					//System.out.println(family);
+//					
+//					temp = cell.getQualifierArray();
+//					String column = new String(subByteArray(temp, cell.getQualifierOffset(), cell.getQualifierLength()));
+//					
+//					temp = cell.getValueArray();
+//					String value = new String(subByteArray(temp, cell.getValueOffset(), cell.getValueLength()));	
+//					System.out.println(family+":"+column+":"+value);
+//				}       
+//			}       
+//		} catch (IOException e){       
+//			e.printStackTrace();       
+//		}       
 	}
+	
     
 	/*
 	* 删除一个表
 	* 参数 表名
 	*/
 	public static boolean deleteTable(String tablename) throws IOException {  
-		HBaseAdmin admin = new HBaseAdmin(conf);  
+		HBaseAdmin admin = new HBaseAdmin(getConf());  
 		System.out.println(admin.toString());
 		if(admin.tableExists(tablename)) {  
 			try {  
@@ -214,7 +241,7 @@ public class BaseDao {
 	} 
     
 	public static boolean addColumnFamily(String tableName,String family) throws IOException{
-		HBaseAdmin admin = new HBaseAdmin(conf);       
+		HBaseAdmin admin = new HBaseAdmin(getConf());       
 	
 		if (admin.tableExists(tableName)) {       
 			HTableDescriptor tableDesc = new HTableDescriptor(TableName.valueOf(tableName));       
@@ -242,7 +269,7 @@ public class BaseDao {
 	}
 	
 	public int checkIsExist (String tableName, String rowKey) throws IOException{       
-		HTable table = new HTable(conf, tableName); 
+		HTable table = new HTable(getConf(), tableName); 
 
 		Get get = new Get(rowKey.getBytes());    
 		
@@ -253,5 +280,13 @@ public class BaseDao {
 		}else{
 			return 1;
 		}
+	}
+
+	public static Configuration getConf() {
+		return conf;
+	}
+
+	public static void setConf(Configuration conf) {
+		BaseDao.conf = conf;
 	}       
 }

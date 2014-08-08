@@ -1,5 +1,8 @@
 package com.iel.hos.services;
 
+import java.io.IOException;
+import java.util.List;
+
 import com.iel.hos.beans.Patient;
 import com.iel.hos.dao.PatientDao;
 
@@ -25,5 +28,10 @@ public class PatientService {
 		// TODO Auto-generated method stub
 		
 		return patientDao.modifyPatient(patient);
+	}
+
+	public List<Patient> searchall() throws IOException {
+		// TODO Auto-generated method stub
+		return patientDao.searchall();
 	}
 }

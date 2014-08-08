@@ -18,8 +18,11 @@
       	<result name="error">/pages/404.jsp</result>
       	</action>
       	<action name="editPwd" class="com.iel.hos.actions.UserAction" method="editPwd">
-      	<result name="success">/pages/login.jsp</result>
+      	<result name="success">/pages/logout.jsp</result>
       	<result name="error">/pages/editPwd.jsp</result>
+      	</action>
+      	<action name="allpatients" class="com.iel.hos.actions.PatientAction" method="searchall">
+      	<result name="success">/pages/allpatients.jsp</result>
       	</action>
     </package>
     

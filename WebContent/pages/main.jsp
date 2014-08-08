@@ -40,7 +40,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="allpatients.action">
                                 <div class="panel-footer">
                                     <span class="pull-left">详细信息</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
