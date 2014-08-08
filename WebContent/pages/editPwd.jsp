@@ -8,7 +8,6 @@ String tran=(String)request.getAttribute("result");
 <script type="text/javascript">
 window.onload=function()
 {
-	alert("aa");
 	var test="<%=tran%>";
 	if(test!=null&&test=="error")
 		{
