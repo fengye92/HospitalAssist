@@ -1,5 +1,6 @@
 package com.iel.hos.actions;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import com.iel.hos.beans.User;
@@ -46,21 +47,18 @@ public class UserAction{
 
 		this.userService = new UserService();
 		this.user.setPermission(this.userService.checkLogin(user));
-		
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		System.out.println(session.getId());
+		System.out.println(session.isNew());
+		session.setAttribute("userId", user.getUserId());
+		session.setAttribute("userPwd", user.getUserPasswd());
+		session.setAttribute("userPermission", user.getPermission());
 		if(this.user.getPermission() == 3){
-			
-			HttpSession session = ServletActionContext.getRequest().getSession();
-			
-			System.out.println(session.getId());
-			System.out.println(session.isNew());
-			session.setAttribute("userId", user.getUserId());
-			session.setAttribute("userPwd", user.getUserPasswd());
-			session.setAttribute("userPermission", user.getPermission());
-
+			return "success3";
 		}
 		else if(this.user.getPermission()==2)
 		{
-			return "success2";
+			return "success3";
 		}
 		else if(this.user.getPermission()==1)
 		{
@@ -70,7 +68,6 @@ public class UserAction{
 		{
 			return "error";			
 		}
-		return "success";
 
 	}
 
@@ -103,16 +100,19 @@ public class UserAction{
 
 	public String editPwd()throws Exception{
 		this.userService = new UserService();
-		System.out.print("测试"+exPwd);
-		int rs=this.userService.editPwd("1", exPwd,newPwd);
+		int rs=this.userService.editPwd("2", exPwd,newPwd);
+		System.out.print(exPwd+newPwd);
 		if(rs==1)
 		{
+			System.out.println("修改成功");
 			return "success";
 		}
 		else
 		{
-			ServletActionContext.getRequest().setAttribute("result","error");
-			return "pwderror";
+			// ServletActionContext.getRequest().setAttribute("result", "error");
+			HttpServletRequest request=ServletActionContext.getRequest();
+			request.setAttribute("result", "error");
+			 return "error";
 		}
 	}
 	

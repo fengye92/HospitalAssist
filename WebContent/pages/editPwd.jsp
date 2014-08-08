@@ -2,9 +2,20 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String tran=(String)request.getAttribute("result");
 %>
+
 <script type="text/javascript">
-function check()
+window.onload=function()
+{
+	alert("aa");
+	var test="<%=tran%>";
+	if(test!=null&&test=="error")
+		{
+		alert("原密码密码错误，请重新输入");
+		}
+}
+function checkform()
 {
 	var psw1= document.getElementById("exampleInputPassword2");
 	var psw2= document.getElementById("exampleInputPassword3");
@@ -12,16 +23,19 @@ function check()
 	var v1=psw1.value;
 	var v2=psw2.value;
 	var v3=psw3.value;
-	if(v1===null||v2===null||v3===null)
+	if(v1===""||v2===""||v3==="")
 		{
 		alert("密码不能为空");
+		document.getElementById("exampleInputPassword2").value="";
+		document.getElementById("exampleInputPassword3").value="";
+		return false;
 		}
 	if(v1!==v2)
 		{
 		alert("两次密码不一致，请重新输入");
-		document.getElementById("exampleInputPassword2").value=null;
-		document.getElementById("exampleInputPassword3").value=null;
-		location.reload();
+		document.getElementById("exampleInputPassword2").value="";
+		document.getElementById("exampleInputPassword3").value="";
+		return false;
 		}
 }
 </script>
@@ -38,7 +52,7 @@ function check()
 	
 	<div id="page-wrapper">
 		<div class="container-fluid">
-			<form role="form" method="post" action="editPwd.action">
+			<form role="form" onsubmit="return checkform();" method="post" action="editPwd.action">
   			<div class="form-group">
     			<label for="exampleInputPassword1">输入原密码</label>
     			<input name="exPwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="原密码">
@@ -46,7 +60,7 @@ function check()
     			<input name="newPwd" type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
     			<label for="exampleInputPassword3">再次输入新密码</label>
     			<input type="password" class="form-control" id="exampleInputPassword3" placeholder="新密码">
-    			<button type="submit" class="btn btn-default" onclick="check()">提交</button>
+    			<button type="submit" class="btn btn-default">提交</button>
   			</div>
   			</form>
 		</div>
