@@ -38,8 +38,10 @@ public class PatientDao extends BaseDao{
 		
 		for(Result r :ss)
 		{
-			System.out.println("\n row"+new String(r.getRow()));
+			System.out.println("\n rowlalallala"+new String(r.getRow()));
 			Patient p = new Patient();
+			String id=new String(r.getRow(),"utf-8");
+			p.setId(id);
 			for(KeyValue kv:r.raw())
 			{
 			  	String tmp=new String(kv.getQualifier(),"utf-8");
@@ -69,7 +71,7 @@ public class PatientDao extends BaseDao{
 			  		p.setIdNum(value);
 			  	}
 			}
-			System.out.println("创建完毕"+p.getName()+p.getAddress()+p.getGender()+p.getAge()+p.getIdNum()
+			System.out.println("创建完毕"+p.getId()+p.getName()+p.getAddress()+p.getGender()+p.getAge()+p.getIdNum()
 					+p.getTelephone());
 			patients.add(p);
 		}

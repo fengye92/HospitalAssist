@@ -18,10 +18,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <div class="container-fluid">
   <table class="table table-hover">
   	<tr>
-  		<td>姓名</td><td>年龄</td><td>性别</td><td>身份证号码</td><td>电话号码</td><td>地址</td>
+  		<td>患者编号</td><td>姓名</td><td>年龄</td><td>性别</td><td>身份证号码</td><td>电话号码</td><td>地址</td>
   	</tr>
 		<c:forEach var="p" items="${patients }" varStatus="status">
 		 <tr>
+		 	<td>${p.id }</td>
  			<td>${p.name }</td>
  			<td>${p.age }</td>
  			<td>${p.gender }</td>

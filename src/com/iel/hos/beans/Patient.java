@@ -1,12 +1,19 @@
 package com.iel.hos.beans;
 
 public class Patient {
+	private String id;
 	private String name;
 	private int age;
 	private int gender;
 	private String idNum;
 	private String telephone;
 	private String address;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getName() {
 		return name;
 	}
