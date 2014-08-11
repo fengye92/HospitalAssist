@@ -3,6 +3,8 @@
 <%HttpSession Session = request.getSession();          
 String name = (String)Session.getAttribute("username");         
 %>
+<%@include  file="/pages/sessionCheck.jsp"%>
+
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
 		<a class="navbar-brand" href="pages/main.jsp">医学数据管理系统</a>
@@ -43,7 +45,7 @@ String name = (String)Session.getAttribute("username");
 				<a class="active" href="pages/main.jsp"><i class="fa fa-fw fa-dashboard"></i><span class="pic-title">控制台</span></a>
 			</li>
 			<li>
-            	<a href="#"><i class="fa fa-fw fa-group"></i><span class="pic-title">管理病人</span></a>
+            	<a href="pages/allpatients.jsp"><i class="fa fa-fw fa-group"></i><span class="pic-title">管理病人</span></a>
             </li>
 			<li>
             	<a href="#"><i class="fa fa-fw fa-file"></i><span class="pic-title">病例信息</span></a>
