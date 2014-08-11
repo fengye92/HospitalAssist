@@ -1,7 +1,6 @@
-<%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
 <%
-Object obj = session.getAttribute("userId");
-if(obj==null){
+Object userId_ss = session.getAttribute("userId");
+if(userId_ss==null){
 	String contextPath = request.getContextPath();
 
 	response.sendRedirect(contextPath+"/pages/login.jsp");

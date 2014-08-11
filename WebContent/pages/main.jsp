@@ -3,7 +3,6 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<%@include  file="/pages/sessionCheck.jsp"%>
 
 <!DOCTYPE html>
 <html lang="en">
