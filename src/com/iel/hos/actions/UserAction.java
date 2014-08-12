@@ -14,6 +14,10 @@ public class UserAction{
 	private String newPwd;
 	private String message;
 	
+	public UserAction()
+	{
+		userService = new UserService();
+	}
 	public String getNewPwd() {
 		return newPwd;
 	}
@@ -37,31 +41,35 @@ public class UserAction{
 	public void setUser(User user) {
 		this.user = user;
 	}
-
+	public void setSession()
+	{
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		user.setUserName(userService.getUserOneCell(user.getUserId(), "name"));
+		session.setAttribute("username", user.getUserName());
+		session.setAttribute("userId", user.getUserId());
+		session.setAttribute("userPwd", user.getUserPasswd());
+		session.setAttribute("userPermission", user.getPermission());
+	}
 	/**
 	 *   @return
 	 *    @throws Exception 
 	 *   */
 	
 	public String checkLogin() throws Exception{
-
-		this.userService = new UserService();
 		this.user.setPermission(this.userService.checkLogin(user));
-		HttpSession session = ServletActionContext.getRequest().getSession();
-		System.out.println(session.getId());
-		System.out.println(session.isNew());
-		session.setAttribute("userId", user.getUserId());
-		session.setAttribute("userPwd", user.getUserPasswd());
-		session.setAttribute("userPermission", user.getPermission());
+		
 		if(this.user.getPermission() == 3){
+			setSession();
 			return "success3";
 		}
 		else if(this.user.getPermission()==2)
 		{
+			setSession();
 			return "success3";
 		}
 		else if(this.user.getPermission()==1)
 		{
+			setSession();
 			return "success1";
 		}
 		else
@@ -72,7 +80,6 @@ public class UserAction{
 	}
 
 	public String addUser() throws Exception{
-		this.userService = new UserService();
 		System.out.println(user.getPermission());
 		System.out.println(user.getUserName());
 		
@@ -87,19 +94,16 @@ public class UserAction{
 	}
 	
 	public String delUser() throws Exception{
-		this.userService = new UserService();
 		this.userService.delUser(user);
 		return "success";
 	}
 	
 	public String ModifyUser() throws Exception{
-		this.userService = new UserService();
 		this.userService.modifyUser(user);
 		return "success";
 	}
 
 	public String editPwd()throws Exception{
-		this.userService = new UserService();
 		int rs=this.userService.editPwd("2", exPwd,newPwd);
 		System.out.print(exPwd+newPwd);
 		if(rs==1)

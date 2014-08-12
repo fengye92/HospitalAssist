@@ -1,7 +1,7 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <nav class="navbar navbar-static-top navbar-default" role="navigation" style="margin-bottom:0">
 <%HttpSession Session = request.getSession();          
-String name = (String)Session.getAttribute("username");         
+String name = (String)Session.getAttribute("username");
 %>
 <%@include  file="/pages/sessionCheck.jsp"%>
 
@@ -15,7 +15,7 @@ String name = (String)Session.getAttribute("username");
 		
 	<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-			<i class="fa fa-user"></i><span class="pic-title"></span><b class="caret"></b>
+			<i class="fa fa-user"></i><span class="pic-title">您好，<%=name %></span><b class="caret"></b>
 		</a>
 		<ul class="dropdown-menu">
 			<li >

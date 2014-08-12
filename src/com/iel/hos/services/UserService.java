@@ -35,4 +35,8 @@ public class UserService {
 	{
 		return userDao.EditPwd(userId, exPwd,newPwd);
 	}
+	public String getUserOneCell(String userId, String attr)
+	{
+		return userDao.getUserOneCell(userId, attr);
+	}
 }
