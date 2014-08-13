@@ -37,8 +37,7 @@ public class PatientDao extends BaseDao{
 		ResultScanner ss = table.getScanner(s);
 		
 		for(Result r :ss)
-		{
-			System.out.println("\n rowlalallala"+new String(r.getRow()));
+		{		    
 			Patient p = new Patient();
 			String id=new String(r.getRow(),"utf-8");
 			p.setId(id);
