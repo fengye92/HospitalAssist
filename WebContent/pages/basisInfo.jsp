@@ -1,14 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1" import="java.util.* ,java.io.*"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8" import="java.util.* ,java.io.*"%>
 <%@ page import="org.apache.poi.poifs.filesystem.*,org.apache.poi.hssf.usermodel.*" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	<base href="<%=basePath%>">
+	<%@ include file="header_css.jsp" %> 
 </head>
 <body>
-<table border="1" width="100%">
+<div id="wrapper">
+	<%@ include file="header.jsp" %>
+<div id="page-wrapper">
+<div class="container-fluid">
+<table class="table table-hover">
 <%
   FileInputStream finput = new FileInputStream("d://aa.xls");
   //设定FileINputStream读取Excel档 
@@ -58,6 +67,8 @@
   }
 %>
 </table>
-
+</div>
+</div>
+</div>
 </body>
 </html>
