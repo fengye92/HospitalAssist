@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <nav class="navbar navbar-static-top navbar-default" role="navigation" style="margin-bottom:0">
 <%HttpSession Session = request.getSession();          
 String name = (String)Session.getAttribute("username");
@@ -20,10 +20,15 @@ int userPerm_ss = (Integer)Session.getAttribute("userPermission");
 		</a>
 		<ul class="dropdown-menu" id="dropDownMenu">
 			<li >
-				<a href="pages/main.jsp"><i class="fa fa-fw fa-gear"></i><span class="pic-title">用户设置</span></a>
+				<a href="pages/dashBoard/userInfo.jsp"><i class="fa fa-fw fa-gear"></i><span class="pic-title">用户设置</span></a>
 			</li>
             <li>
                 <a href="pages/dashBoard/editPwd.jsp"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
+
+            </li>
+            <li>
+                <a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a>
+
             </li>
             
             <li class="divider"></li>
