@@ -32,7 +32,7 @@ public class UserDao {
 				return NO_ROWKEY;
 			}else{
 				if(result.get("info : pwd").equals(passwd)){
-					System.out.println(Integer.parseInt(result.get("info : pwd")));
+					System.out.println("new method" + Integer.parseInt(result.get("info : pwd")));
 					return Integer.parseInt(result.get("info : permission"));
 				}else{
 					System.out.println("wrong pwd!!");

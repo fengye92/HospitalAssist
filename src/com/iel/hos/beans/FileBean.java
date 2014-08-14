@@ -16,7 +16,7 @@ public class FileBean {
 		modifyTime = fileStatus.getModificationTime();
 		fileName = fileStatus.getPath().getName();
 		fileDir = fileStatus.getPath().getParent().getName();
-		isDir = fileStatus.isDir();
+		isDir = fileStatus.isDirectory();
 	}	
 	
 	public String getHdfsPath() {

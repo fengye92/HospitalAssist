@@ -3,24 +3,50 @@ package com.iel.hos.dao;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
-
-import org.apache.hadoop.hbase.KeyValue;
+import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
-
 import com.iel.hos.beans.Patient;
 
 public class PatientDao extends BaseDao{
 
 	public int addPatient(Patient patient) {
 		// TODO Auto-generated method stub
+		try{
+			String[] values = new String[6];
+			values[0] = patient.getName();
+			values[1] = "" + patient.getAge();
+			values[2] = "" + patient.getGender();
+			values[3] = patient.getIdNum();
+			values[4] = patient.getTelephone();
+			values[5] = patient.getAddress();
+			
+			String[] family = {"patientinfo", "patientinfo", "patientinfo","patientinfo","patientinfo","patientinfo"};
+			String[] column = {"name", "age", "gender","idNum","telephone","address"};
+			
+			if(this.checkIsExist("patient", patient.getId())==0){
+				this.addCellsRecord("patient", patient.getId(), family, column, values);
+				return 1;
+			}else{
+				System.out.println("This patient exists!");
+				return -1;
+			}
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
 	public int delPatient(Patient patient) {
 		// TODO Auto-generated method stub
+		try{			
+			this.delRecord("patient", patient.getId());
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 		return 0;
 	}
 
@@ -31,7 +57,7 @@ public class PatientDao extends BaseDao{
 
 	public List<Patient> searchall() throws IOException {
 		// TODO Auto-generated method stub
-		HTable table = new HTable(this.getConf(), "patient");    
+		HTable table = new HTable(getConf(), "patient");    
 		Scan s = new Scan();  
 		List<Patient> patients=new LinkedList<Patient>();
 		ResultScanner ss = table.getScanner(s);
@@ -41,10 +67,10 @@ public class PatientDao extends BaseDao{
 			Patient p = new Patient();
 			String id=new String(r.getRow(),"utf-8");
 			p.setId(id);
-			for(KeyValue kv:r.raw())
+			for(Cell cell:r.rawCells())
 			{
-			  	String tmp=new String(kv.getQualifier(),"utf-8");
-			  	String value=new String(kv.getValue(),"utf-8");
+			  	String tmp=new String(CellUtil.cloneQualifier(cell),"utf-8");
+			  	String value=new String(CellUtil.cloneValue(cell),"utf-8");
 			  	if(tmp.equals("name"))
 			  	{
 			  		p.setName(value);

@@ -1,18 +1,16 @@
 package com.iel.hos.dao;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.hadoop.conf.Configuration;  
 import org.apache.hadoop.hbase.Cell;
+import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.HBaseConfiguration;  
 import org.apache.hadoop.hbase.HColumnDescriptor;  
 import org.apache.hadoop.hbase.HTableDescriptor;  
-import org.apache.hadoop.hbase.KeyValue;
 import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Delete;  
 import org.apache.hadoop.hbase.client.Get;  
@@ -138,14 +136,18 @@ public class BaseDao {
 			result.put("Tag", "success");
 			for(Cell cell : rs.rawCells()){
 				
-				byte[] temp =  cell.getFamilyArray();
+				String family = new String(CellUtil.cloneFamily(cell),"utf-8");
+				String column = new String(CellUtil.cloneQualifier(cell),"utf-8");
+				String value =  new String(CellUtil.cloneValue(cell),"utf-8");
+
+				/*byte[] temp =  cell.getFamilyArray();
 				String family = new String(subByteArray(temp, cell.getFamilyOffset(), cell.getFamilyLength()));
 				
 				temp = cell.getQualifierArray();
 				String column = new String(subByteArray(temp, cell.getQualifierOffset(), cell.getQualifierLength()));
 
 				temp = cell.getValueArray();
-				String value = new String(subByteArray(temp, cell.getValueOffset(), cell.getValueLength()));
+				String value = new String(subByteArray(temp, cell.getValueOffset(), cell.getValueLength()));*/
 				result.put(family +" : " + column, value);	
 			}  
 			return result;
@@ -183,11 +185,11 @@ public class BaseDao {
 			for(Result r :ss)
 			{
 				System.out.println("\n row"+new String(r.getRow()));
-				for(KeyValue kv:r.raw())
+				for(Cell cell : r.rawCells() )
 				{
-				  	System.out.println("family=>"+new String(kv.getFamily(),"utf-8")+
-				  			"value=>"+new String(kv.getValue(),"utf-8")+
-				  			"qualifer=>"+new String(kv.getQualifier(),"utf-8")
+				  	System.out.println("family=>"+new String(CellUtil.cloneFamily(cell),"utf-8")+
+				  			"value=>"+new String(CellUtil.cloneValue(cell),"utf-8")+
+				  			"qualifer=>"+new String(CellUtil.cloneQualifier(cell),"utf-8")
 				  	);
 				}
 			}
@@ -255,6 +257,7 @@ public class BaseDao {
 		return true;
 	}
 	
+	/*
 	public byte[] subByteArray(byte[] array, int start, int length){
 		if (array.length > start && start + length <= array.length ){
 			byte[] sub = new byte[length];
@@ -266,7 +269,7 @@ public class BaseDao {
 			return sub;
 		}
 		return null;
-	}
+	}*/
 	
 	public int checkIsExist (String tableName, String rowKey) throws IOException{       
 		HTable table = new HTable(getConf(), tableName); 
