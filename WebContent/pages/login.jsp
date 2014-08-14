@@ -21,13 +21,13 @@ if(obj==null){
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>登陆</title>
+	<title>登录</title>
 	<link rel="icon" href="img/favicon.ico">
 	
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 	<link href="css/signin.css" rel="stylesheet">
 	<link href="css/custom.css" rel="stylesheet">
-	
+	 
 </head>
 <body>
 	<div class="container">
@@ -37,7 +37,7 @@ if(obj==null){
         <input name="user.userId" type="userName" class="form-control" placeholder="用户名" required="" autofocus="">
         <input name="user.userPasswd" type="password" class="form-control" placeholder="密码" required="">
         
-        <button class="btn btn-lg btn-primary btn-block" type="submit">登陆</button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
       </form>
 
     </div>
