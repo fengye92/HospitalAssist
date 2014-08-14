@@ -14,15 +14,15 @@
 		</action>
       	
 		<action name="addUser" class="com.iel.hos.actions.UserAction" method="addUser">
-			<result name="success">/pages/addUser.jsp</result>
+			<result name="success">/pages/dashBoard/addUser.jsp</result>
 			<result name="error">/pages/404.jsp</result>
 		</action>
 		<action name="editPwd" class="com.iel.hos.actions.UserAction" method="editPwd">
-			<result name="success">/pages/logout.jsp</result>
-			<result name="error">/pages/editPwd.jsp</result>
+			<result name="success">/pages/common/logout.jsp</result>
+			<result name="error">/pages/dashBoard/editPwd.jsp</result>
 		</action>
 		<action name="allpatients" class="com.iel.hos.actions.PatientAction" method="searchall">
-			<result name="success">/pages/allpatients.jsp</result>
+			<result name="success">/pages/patient/allpatients.jsp</result>
 		</action>
 
 		<action name="fileupload" class="com.iel.hos.actions.FilesAction" method="doPost">

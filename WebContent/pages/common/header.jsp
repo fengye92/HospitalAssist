@@ -2,6 +2,7 @@
 <nav class="navbar navbar-static-top navbar-default" role="navigation" style="margin-bottom:0">
 <%HttpSession Session = request.getSession();          
 String name = (String)Session.getAttribute("username");
+int userPerm_ss = (Integer)Session.getAttribute("userPermission");
 %>
 <%@include  file="/pages/common/sessionCheck.jsp"%>
 
@@ -11,25 +12,23 @@ String name = (String)Session.getAttribute("username");
 	</div>
 		
 	<!-- Top Menu Items -->
-	<ul class="nav navbar-right navbar-top-links">
+	<ul class="nav navbar-right navbar-top-links" >
 		
 	<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 			<i class="fa fa-user"></i><span class="pic-title">您好，<%=name %></span><b class="caret"></b>
 		</a>
-		<ul class="dropdown-menu">
+		<ul class="dropdown-menu" id="dropDownMenu">
 			<li >
 				<a href="pages/main.jsp"><i class="fa fa-fw fa-gear"></i><span class="pic-title">用户设置</span></a>
 			</li>
             <li>
-                <a href="pages/editPwd.jsp"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
+                <a href="pages/dashBoard/editPwd.jsp"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
             </li>
-            <li>
-                <a href="pages/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a>
-            </li>
+            
             <li class="divider"></li>
             <li>
-                <a href="pages/logout.jsp" ><i class="fa fa-fw fa-power-off"></i><span class="pic-title">退出</span></a>
+                <a href="pages/common/logout.jsp" ><i class="fa fa-fw fa-power-off"></i><span class="pic-title">退出</span></a>
             </li>
         </ul>
     </li>
@@ -69,6 +68,15 @@ String name = (String)Session.getAttribute("username");
    </div>
    </div>
 </nav>	
-   
+<script>
+	window.onload=function(){
+		alert("asafd");
+		var userPer="<%=userPerm_ss%>";
+		if(userPer==3 ||userPer==2){
+			$("<li><a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a></li>").appendTo("#dropDownMenu");
+			//jQuery("<li><a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a></li>").appendTo("#dropDownMenu");
+		}
+	}
+   </script>
    <!-- /.navbar-collapse -->      
 			

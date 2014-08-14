@@ -19,10 +19,13 @@ public class PatientAction {
 		this.patientService = new PatientService();
 
 		if(this.patientService.addPatient(patient)==1){
-			
+			HttpServletRequest request=ServletActionContext.getRequest();
+			request.setAttribute("message", "success");
 			return "success";
 		}else{
-			return "success";
+			HttpServletRequest request=ServletActionContext.getRequest();
+			request.setAttribute("message", "error");
+			return "error";
 		}
 	}
 	

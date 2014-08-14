@@ -2,6 +2,8 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String message=(String)request.getAttribute("message");
+int userPer_ss = (Integer)session.getAttribute("userPermission");
 %>
 
 <!DOCTYPE html>
@@ -28,11 +30,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     			<label for="newUserPwd">新用户密码（初始为000）</label>
     			<input type="text" class="form-control" id="newUserPwd" disabled="true"  placeholder="000">
     			<label for="newUserPermission">新用户权限</label>
-    			<select class="form-control" name="user.permission">
-    				<option value="3">管理员</option>
-    				<option value="2">医生</option>
-    				<option value="1">实习生</option>
-    			</select>
+    			<select class="form-control" name="user.permission" id="newUserPermission">
+    				<option value='1'>实习生</option>
+     			</select>
     			<br/>
     			</div>
     			<div class="col-md-3 col-md-offset-6">
@@ -56,13 +56,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	$('#newUserId').focus();
 	
 	//这段代码能用?
-	/*function check(){
+	function check(){
+		var id= document.getElementById("newUserId");
+		var name= document.getElementById("newUserName");
+		var permission= document.getElementById("newUserPermission");
+		var v1=id.value;
+		var v2=name.value;
+		var v3=permission.value;
+		
+		if(v1===""||v2===""){
+			
+			alert("用户ID或姓名不能为空！");
+		
+			return false;
+		}
+	}
 	
-		HttpServletRequest request1 = ServletActionContext.getRequest();
-		String test=request1.getAttribute("message");
-		alert(test);
-	
-	}*/
+	window.onload=function(){
+		
+		var addResult="<%=message%>";
+		if(addResult=="success"){
+			alert("已成功添加用户！");
+		}else if(addResult=="error"){
+			alert("用户ID已存在！");
+		}
+		
+		var userPer="<%=userPer_ss%>";
+		if(userPer==3){
+			jQuery("<option value='2'>医生</option>").appendTo("#newUserPermission");
+			jQuery("<option value='3'>管理员</option>").appendTo("#newUserPermission");
+		}
+	}
 	</script>    
 </body>
 </html>

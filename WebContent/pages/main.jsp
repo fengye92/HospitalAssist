@@ -121,6 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="js/plugins/highcharts.js"></script>
 	
 	<script>
+	
 	$(function () {
 	    $('#container').highcharts({
 	        chart: {
