@@ -10,11 +10,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 	<base href="<%=basePath%>">
-	<%@ include file="headerCss.jsp" %> 
+	<%@ include file="../common/headerCss.jsp" %> 
 </head>
 <body>
 <div id="wrapper">
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 <div id="page-wrapper">
 <div class="container-fluid">
   <table class="table table-hover">

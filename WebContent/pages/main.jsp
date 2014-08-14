@@ -9,12 +9,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <head>
 	<base href="<%=basePath%>">
-	<%@ include file="headerCss.jsp" %> 
+	<%@ include file="common/headerCss.jsp" %> 
 </head>
 
 <body>		
 	<div id="wrapper">
-	<%@ include file="header.jsp" %> 
+	<%@ include file="common/header.jsp" %> 
 	
 	<!-- 不同的页面内容在此处体现，header等其他信息一样 -->
 	<div id="page-wrapper">
