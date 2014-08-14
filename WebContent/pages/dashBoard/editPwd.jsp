@@ -16,28 +16,41 @@ String tran=(String)request.getAttribute("result");
 	<%@ include file="../common/header.jsp" %>
 	
 	<div id="page-wrapper">
-		<div class="container">
-			<div class="row">
-				<form role="form" onsubmit="return checkform();" method="post" action="editPwd.action">
-		  			<div class="form-group">
-		    			<div class="col-md-4 col-md-offset-3">
-		    			<label for="exampleInputPassword1">输入原密码</label>
-		    			<input name="exPwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="原密码" >
-		    			<label for="exampleInputPassword2">输入新密码</label>
-		    			<input name="newPwd" type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
-		    			<label for="exampleInputPassword3">再次输入新密码</label>
-		    			<input type="password" class="form-control" id="exampleInputPassword3" placeholder="新密码">
-		    			<br/>
-		    			</div>
-		    			<div class="col-md-3 col-md-offset-6">
-		    			<button type="submit" class="btn btn-default">
-		    				<i class="fa fa-fw fa-save"></i>提交
-		    			</button>
-		    			</div>
-		  			</div>
-	  			</form>
-  			</div>
-		</div>
+		<div class="row">
+			<br/>
+            <div class="col-lg-12">
+                <ol class="breadcrumb">
+                    <li>
+                        <i class="fa fa-dashboard"></i>
+                        <span class="pic-title"><a href="pages/main.jsp">控制台</a></span>
+                    </li>
+                    <li class="active">
+                    	<i class="fa fa-fw fa-wrench"></i>
+                       <span class="pic-title">修改密码</span>
+                    </li>
+                </ol>
+            </div>
+        </div>
+		<div class="row">
+			<form role="form" onsubmit="return checkform();" method="post" action="editPwd.action">
+	  			<div class="form-group">
+	    			<div class="col-md-4 col-md-offset-4">
+	    			<label for="exampleInputPassword1">输入原密码</label>
+	    			<input name="exPwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="原密码"  autofocus="">
+	    			<label for="exampleInputPassword2">输入新密码</label>
+	    			<input name="newPwd" type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
+	    			<label for="exampleInputPassword3">再次输入新密码</label>
+	    			<input type="password" class="form-control" id="exampleInputPassword3" placeholder="新密码">
+	    			<br/>
+	    			</div>
+	    			<div class="col-md-3 col-md-offset-7">
+	    			<button type="submit" class="btn btn-default">
+	    				<i class="fa fa-fw fa-save"></i>提交
+	    			</button>
+	    			</div>
+	  			</div>
+  			</form>
+ 		</div>
 	</div>
 	</div>	
 		<!-- jQuery Version 1.11.0 -->
@@ -47,8 +60,6 @@ String tran=(String)request.getAttribute("result");
 	<script src="js/bootstrap.min.js"></script>	     
 	
 	<script>
-		
-		$('#exampleInputPassword1').focus();
 
 		window.onload=function(){
 			

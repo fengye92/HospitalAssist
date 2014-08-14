@@ -19,17 +19,17 @@ String name = (String)Session.getAttribute("username");
 		</a>
 		<ul class="dropdown-menu">
 			<li >
-				<a href="pages/main.jsp"><i class="fa fa-fw fa-gear"></i><span class="pic-title">用户设置</span></a>
+				<a href="pages/dashBoard/userInfo.jsp"><i class="fa fa-fw fa-gear"></i><span class="pic-title">用户设置</span></a>
 			</li>
             <li>
-                <a href="pages/editPwd.jsp"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
+                <a href="pages/dashBoard/editPwd.jsp"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
             </li>
             <li>
-                <a href="pages/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a>
+                <a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a>
             </li>
             <li class="divider"></li>
             <li>
-                <a href="pages/logout.jsp" ><i class="fa fa-fw fa-power-off"></i><span class="pic-title">退出</span></a>
+                <a href="pages/common/logout.jsp" ><i class="fa fa-fw fa-power-off"></i><span class="pic-title">退出</span></a>
             </li>
         </ul>
     </li>
