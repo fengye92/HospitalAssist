@@ -4,21 +4,11 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<script type="text/javascript">
-function check()
-{
-
-	HttpServletRequest request1 = ServletActionContext.getRequest();
-	String test=request1.getAttribute("message");
-	alert(test);
-
-}
-</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<base href="<%=basePath%>">
-	<%@ include file="header_css.jsp" %> 
+	<%@ include file="headerCss.jsp" %> 
 </head>
 
 <body>
@@ -26,9 +16,11 @@ function check()
 	<%@ include file="header.jsp" %>
 	
 	<div id="page-wrapper">
-		<div class="container-fluid">
+		<div class="container">
+			<div class="row">
 			<form role="form" method="post" action="addUser.action">
   			<div class="form-group">
+  				<div class="col-md-4 col-md-offset-3">
     			<label for="newUserId">新用户ID</label>
     			<input name="user.userId" type="text" class="form-control" id="newUserId" placeholder="用户ID">
     			<label for="newUserName">新用户姓名</label>
@@ -41,10 +33,16 @@ function check()
     				<option value="2">医生</option>
     				<option value="1">实习生</option>
     			</select>
-    			<button type="submit" class="btn btn-default" onClick="check()">提交</button>
-    			
+    			<br/>
+    			</div>
+    			<div class="col-md-3 col-md-offset-6">
+	    			<button type="submit" class="btn btn-default" onClick="check()">
+	    				<i class="fa fa-fw fa-save"></i>提交
+	    			</button>
+    			</div>
   			</div>
   			</form>
+  			</div>
 		</div>
 	</div>
 	</div>	
@@ -52,6 +50,19 @@ function check()
 	<script src="js/jquery-1.11.0.js"></script>
 	
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>	     
+	<script src="js/bootstrap.min.js"></script>	 
+	
+	<script>
+	$('#newUserId').focus();
+	
+	//这段代码能用?
+	/*function check(){
+	
+		HttpServletRequest request1 = ServletActionContext.getRequest();
+		String test=request1.getAttribute("message");
+		alert(test);
+	
+	}*/
+	</script>    
 </body>
 </html>
