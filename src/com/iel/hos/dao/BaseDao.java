@@ -166,7 +166,8 @@ public class BaseDao {
 		
 		Result rs = table.get(get);  
 		
-		result.put("value",new String(rs.getValue(Bytes.toBytes(family), Bytes.toBytes(column))));
+		result.put("value",new String(rs.getValue(Bytes.toBytes(family), Bytes.toBytes(column)),"utf-8"));
+		System.out.println(result.get("value"));
 		return result;
 	}
                  

@@ -4,14 +4,14 @@
 <%HttpSession Session = request.getSession();          
 String name = (String)Session.getAttribute("username");
 String userPerm_ss = ""+Session.getAttribute("userPermission");
-String userPerm_name;
+String userPerm_name="";
 if(!userPerm_ss.equals("null")){
 	int userPerm_ssi = Integer.parseInt(userPerm_ss);
-	if(userPerm_ssi==1)
+	if(userPerm_ssi==3)
 	{
 		userPerm_name = "管理员";
 	}
-	else if(userPerm_ssi==2)
+	else if(userPerm_ssi==1)
 	{
 		userPerm_name="医生";
 	}

@@ -7,15 +7,12 @@
 
 <body>
 <%
-session.invalidate();
+HttpSession ss = request.getSession();
+ss.invalidate();
+String contextPath = request.getContextPath();
+response.sendRedirect(contextPath+"/pages/main.jsp");
+%>
 
-out.println("<script language='javascript'>");
-//response.setHeader("Cache-Control","no-store"); 
-//response.setDateHeader("Expires", 0); 
-//response.setHeader("Pragma","no-cache");
-out.println("window.location.href='../main.jsp'");
-out.println("</script>");
-%> 
 
 
 </body>
