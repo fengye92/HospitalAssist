@@ -74,14 +74,7 @@ int userPerm_ss = (Integer)Session.getAttribute("userPermission");
    </div>
 </nav>	
 <script>
-	window.onload=function(){
-		alert("asafd");
-		var userPer="<%=userPerm_ss%>";
-		if(userPer==3 ||userPer==2){
-			$("<li><a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a></li>").appendTo("#dropDownMenu");
-			//jQuery("<li><a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a></li>").appendTo("#dropDownMenu");
-		}
-	}
+
    </script>
    <!-- /.navbar-collapse -->      
 			

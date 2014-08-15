@@ -33,23 +33,23 @@ String tran=(String)request.getAttribute("result");
 	            </div>
 	        </div>
 			<div class="row">
-			<form role="form" onsubmit="return checkform();" method="post" action="editPwd.action">
-	  			<div class="form-group">
-	    			<div class="col-md-4 col-md-offset-4">
-	    			<label for="exampleInputPassword1">输入原密码</label>
-	    			<input name="exPwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="原密码"  autofocus="">
-	    			<label for="exampleInputPassword2">输入新密码</label>
-	    			<input name="newPwd" type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
-	    			<label for="exampleInputPassword3">再次输入新密码</label>
-	    			<input type="password" class="form-control" id="exampleInputPassword3" placeholder="新密码">
-	    			<br/>
-	    			<button type="submit" class="btn btn-default pull-right">
-	    				<i class="fa fa-fw fa-save"></i>提交
-	    			</button>
-	    			</div>
-	  			</div>
-  			</form>
- 		</div>
+				<form role="form" onsubmit="return checkform();" method="post" action="editPwd.action">
+		  			<div class="form-group">
+		    			<div class="col-md-4 col-md-offset-4">
+		    			<label for="exampleInputPassword1">输入原密码</label>
+		    			<input name="exPwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="原密码"  autofocus="">
+		    			<label for="exampleInputPassword2">输入新密码</label>
+		    			<input name="newPwd" type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
+		    			<label for="exampleInputPassword3">再次输入新密码</label>
+		    			<input type="password" class="form-control" id="exampleInputPassword3" placeholder="新密码">
+		    			<br/>
+		    			<button type="submit" class="btn btn-default pull-right">
+		    				<i class="fa fa-fw fa-save"></i>提交
+		    			</button>
+		    			</div>
+		  			</div>
+	  			</form>
+ 			</div>
 		</div>
 	</div>
 	</div>
