@@ -2,7 +2,6 @@
 <nav class="navbar navbar-static-top navbar-default" role="navigation" style="margin-bottom:0">
 <%HttpSession Session = request.getSession();          
 String name = (String)Session.getAttribute("username");
-int userPerm_ss = (Integer)Session.getAttribute("userPermission");
 %>
 <%@include  file="/pages/common/sessionCheck.jsp"%>
 
@@ -73,15 +72,6 @@ int userPerm_ss = (Integer)Session.getAttribute("userPermission");
    </div>
    </div>
 </nav>	
-<script>
-	window.onload=function(){
-		alert("asafd");
-		var userPer="<%=userPerm_ss%>";
-		if(userPer==3 ||userPer==2){
-			$("<li><a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a></li>").appendTo("#dropDownMenu");
-			//jQuery("<li><a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a></li>").appendTo("#dropDownMenu");
-		}
-	}
-   </script>
+
    <!-- /.navbar-collapse -->      
 			
