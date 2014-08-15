@@ -1,28 +1,32 @@
-﻿<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <nav class="navbar navbar-static-top navbar-default" role="navigation" style="margin-bottom:0">
+<%@include  file="/pages/common/sessionCheck.jsp"%>
 <%HttpSession Session = request.getSession();          
 String name = (String)Session.getAttribute("username");
-int userPerm_ss = (Integer)Session.getAttribute("userPermission");
+String userPerm_ss = ""+Session.getAttribute("userPermission");
 String userPerm_name;
-if(userPerm_ss==1)
-{
-	userPerm_name = "管理员";
+if(!userPerm_ss.equals("null")){
+	int userPerm_ssi = Integer.parseInt(userPerm_ss);
+	if(userPerm_ssi==1)
+	{
+		userPerm_name = "管理员";
+	}
+	else if(userPerm_ssi==2)
+	{
+		userPerm_name="医生";
+	}
+	else
+	{
+		userPerm_name="实习生";
+	}
 }
-else if(userPerm_ss==2)
-{
-	userPerm_name="医生";
-}
-else
-{
-	userPerm_name="实习生";
-}
+
 String uid = (String)Session.getAttribute("userId");
 String tel = (String)Session.getAttribute("tel");
 String email = (String)Session.getAttribute("email");
 String des=(String)Session.getAttribute("des");
 String depart = (String)Session.getAttribute("department");
 %>
-<%@include  file="/pages/common/sessionCheck.jsp"%>
 
 	<!-- Brand and toggle get grouped for better mobile display -->
 	<div class="navbar-header">
@@ -90,6 +94,12 @@ String depart = (String)Session.getAttribute("department");
        </ul>
    </div>
    </div>
+<<<<<<< HEAD
+</nav>	
+</nav>	
+
+   <!-- /.navbar-collapse -->      
+=======
 </nav>
 <script>
 	window.onload=function(){
@@ -102,4 +112,5 @@ String depart = (String)Session.getAttribute("department");
 	}
 </script>	
 <!-- /.navbar-collapse -->      
+>>>>>>> origin/master
 			
