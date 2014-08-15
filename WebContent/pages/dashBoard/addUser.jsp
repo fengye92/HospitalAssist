@@ -35,17 +35,14 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 	            </div>
 	        </div>
 			<div class="row">
-			<form role="form" method="post" action="addUser.action">
+			<form role="form" method="post" action="addUser.action" onsubmit="return check();">
   			<div class="form-group">
   				<div class="col-md-4 col-md-offset-4">
-  				<% if(str!=null&&str.equals("error"))
-      	    	{
-      				out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'>用户名或者密码错误，请重新输入</div>");
-      	    	}
-      			%>
-    			<label for="newUserId">新用户ID</label>
+  				
+    			<label for="newUserId" id="userIdLabel">新用户ID</label>
     			<input name="user.userId" type="text" class="form-control" id="newUserId" placeholder="用户ID" autofocus="">
-    			<label for="newUserName">新用户姓名</label>
+    			<span id="tip"></span>
+    			<label for="newUserName" id="userNameLabel">新用户姓名</label>
     			<input name="user.userName" type="text" class="form-control" id="newUserName" placeholder="用户姓名">
     			<label for="newUserPwd">新用户密码（初始为000）</label>
     			<input type="text" class="form-control" id="newUserPwd" disabled="true"  placeholder="000">
@@ -57,6 +54,15 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
     			<button type="submit" class="btn btn-default pull-right" onClick="check()">
     				<i class="fa fa-fw fa-save"></i>提交
     			</button>
+    			<br/>
+    			<br/>
+    			<% if(message!=null&&message.equals("existingId"))
+      	    	{
+      				out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>用户ID已存在！</div>");
+      	    	}else if(message!=null&&message.equals("success")){
+      				out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>添加用户成功！</div>");
+      	    	}
+      			%>
     			</div>
   			</div>
   			</form>
@@ -72,7 +78,6 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 	
 	<script>
 	
-	//这段代码能用?
 	function check(){
 		var id= document.getElementById("newUserId");
 		var name= document.getElementById("newUserName");
@@ -81,23 +86,17 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 		var v2=name.value;
 		var v3=permission.value;
 		
-		if(v1===""||v2===""){
-      		//alert("asda");
-
-      		out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'>用户名或者密码错误，请重新输入</div>");
+		if(v1===""){
+			document.getElementById("userIdLabel").innerHTML="新用户ID（不能为空）";
+			return false;
+		}else if(v2===""){
+			document.getElementById("userNameLabel").innerHTML="新用户姓名（不能为空）";
+			
 			return false;
 		}
 	}
 	
-	window.onload=function(){
-		
-		var addResult="<%=message%>";
-		if(addResult=="success"){
-			alert("已成功添加用户！");
-		}else if(addResult=="error"){
-			alert("用户ID已存在！");
-		}
-		
+	window.onload=function(){		
 		var userPer="<%=userPer_ss%>";
 		if(userPer==3){
 			jQuery("<option value='2'>医生</option>").appendTo("#newUserPermission");
