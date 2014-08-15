@@ -33,23 +33,27 @@ String tran=(String)request.getAttribute("result");
 	            </div>
 	        </div>
 			<div class="row">
-				<form role="form" onsubmit="return checkform();" method="post" action="editPwd.action">
-		  			<div class="form-group">
-		    			<div class="col-md-4 col-md-offset-4">
-		    			<label for="exampleInputPassword1">输入原密码</label>
-		    			<input name="exPwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="原密码"  autofocus="">
-		    			<label for="exampleInputPassword2">输入新密码</label>
-		    			<input name="newPwd" type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
-		    			<label for="exampleInputPassword3">再次输入新密码</label>
-		    			<input type="password" class="form-control" id="exampleInputPassword3" placeholder="新密码">
-		    			<br/>
-		    			<button type="submit" class="btn btn-default pull-right">
-		    				<i class="fa fa-fw fa-save"></i>提交
-		    			</button>
-		    			</div>
-		  			</div>
-	  			</form>
- 			</div>
+			<form role="form" onsubmit="return checkform();" method="post" action="editPwd.action">
+	  			
+	  			<div class="form-group">
+	    			<div class="col-md-4 col-md-offset-4" id="formPwd">
+	    			
+	    			<label for="exampleInputPassword1">输入原密码</label>
+	    			<input name="exPwd" type="password" class="form-control" id="exampleInputPassword1" placeholder="原密码"  autofocus="">
+	    			<label for="exampleInputPassword2">输入新密码</label>
+	    			<input name="newPwd" type="password" class="form-control" id="exampleInputPassword2" placeholder="新密码">
+	    			<label for="exampleInputPassword3">再次输入新密码</label>
+	    			<input type="password" class="form-control" id="exampleInputPassword3" placeholder="新密码">
+	    			<br/>
+	    			<button type="submit" class="btn btn-default pull-right">
+	    				<i class="fa fa-fw fa-save"></i>提交
+	    			</button>
+	    			<br/><br/>
+	    			
+	    			</div>
+	  			</div>
+  			</form>
+ 		</div>
 		</div>
 	</div>
 	</div>
@@ -65,7 +69,7 @@ String tran=(String)request.getAttribute("result");
 			
 			var test="<%=tran%>";
 			if(test!=null&&test=="error"){
-				alert("原密码密码错误，请重新输入");
+				document.getElementById("formPwd").innerHTML+="<div class='alert alert-warning alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>原密码输入错误，请重新输入！</div>";
 			}
 		}
 		
@@ -79,15 +83,15 @@ String tran=(String)request.getAttribute("result");
 			var v3=psw3.value;
 			
 			if(v1===""||v2===""||v3===""){
-				
-				alert("密码不能为空");
+				 
+				document.getElementById("formPwd").innerHTML+="<div class='alert alert-warning alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>密码不能为空！</div>";
 				document.getElementById("exampleInputPassword2").value="";
 				document.getElementById("exampleInputPassword3").value="";
 				return false;
 			}
 			if(v1!==v2){
 				
-				alert("两次密码不一致，请重新输入");
+				document.getElementById("formPwd").innerHTML+="<div class='alert alert-warning alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>两次密码不一致，请重新输入！</div>";
 				document.getElementById("exampleInputPassword2").value="";
 				document.getElementById("exampleInputPassword3").value="";
 				return false;
