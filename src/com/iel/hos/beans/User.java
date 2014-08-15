@@ -5,6 +5,34 @@ public class User {
 	private String userPasswd;
 	private int permission;
 	private String userId;
+	private String tel;
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
+	public String getDes() {
+		return des;
+	}
+	public void setDes(String des) {
+		this.des = des;
+	}
+	private String email;
+	private String department;
+	private String des;
 	
 	public String getUserId() {
 		return userId;

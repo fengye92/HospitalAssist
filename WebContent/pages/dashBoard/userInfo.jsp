@@ -37,17 +37,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	  			<div class="form-group">
 	    			<div class="col-md-4 col-md-offset-4">
 	    				<label>医生工号</label>
-	    				<input disabled="true" class="form-control"></input>
+	    				<input disabled="true" class="form-control" placeholder=<%=uid %>></input>
 	    				<label>权限</label>
-	    				<input disabled="true" class="form-control" placeholder="实习生"></input>
+	    				<input disabled="true" class="form-control" placeholder=<%=userPerm_name %>></input>
 		    			<label for="">联系电话</label>
-		    			<input class="form-control" id="" value="13*********"  autofocus="">
+		    			<input class="form-control" id="" value=<%=tel %>  autofocus="">
 		    			<label for="">邮箱</label>
-		    			<input class="form-control" id="" value="****@***.com">
+		    			<input class="form-control" id="" value=<%=email %>>
 		    			<label for="">所在科室</label>
-		    			<input class="form-control" id="" value="科室名称">
+		    			<input class="form-control" id="" value=<%=depart %>>
 		    			<label>个人介绍</label>
-		    			<textarea class="form-control" rows="3"></textarea>
+		    			<textarea class="form-control" rows="3" value=<%=des %>></textarea>
 		    			<br/>
 		    			<button type="submit" class="btn btn-default pull-right">
 		    				<i class="fa fa-fw fa-save"></i>提交
