@@ -3,6 +3,24 @@
 <%HttpSession Session = request.getSession();          
 String name = (String)Session.getAttribute("username");
 int userPerm_ss = (Integer)Session.getAttribute("userPermission");
+String userPerm_name;
+if(userPerm_ss==1)
+{
+	userPerm_name = "管理员";
+}
+else if(userPerm_ss==2)
+{
+	userPerm_name="医生";
+}
+else
+{
+	userPerm_name="实习生";
+}
+String uid = (String)Session.getAttribute("userId");
+String tel = (String)Session.getAttribute("tel");
+String email = (String)Session.getAttribute("email");
+String des=(String)Session.getAttribute("des");
+String depart = (String)Session.getAttribute("department");
 %>
 <%@include  file="/pages/common/sessionCheck.jsp"%>
 
@@ -72,7 +90,7 @@ int userPerm_ss = (Integer)Session.getAttribute("userPermission");
        </ul>
    </div>
    </div>
-</nav>	
+</nav>
 <script>
 	window.onload=function(){
 		alert("asafd");
@@ -82,6 +100,7 @@ int userPerm_ss = (Integer)Session.getAttribute("userPermission");
 			//jQuery("<li><a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a></li>").appendTo("#dropDownMenu");
 		}
 	}
-   </script>
+   </script>	
+
    <!-- /.navbar-collapse -->      
 			
