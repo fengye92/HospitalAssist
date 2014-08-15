@@ -1,6 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -15,9 +13,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <div id="wrapper">
 	<%@ include file="../common/header.jsp" %>
-<div id="page-wrapper">
-<div class="container-fluid">
-  <table class="table table-hover">
+	<div id="page-wrapper">
+		<div class="container-fluid">
+		</div>
+	</div>
+</div>
+</body>
+<!--   <table class="table table-hover">
   	<tr>
   		<td>患者编号</td><td>姓名</td><td>年龄</td><td>性别</td><td>身份证号码</td><td>电话号码</td><td>地址</td>
   	</tr>
@@ -32,9 +34,5 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  			<td>${p.address }</td>
  			</tr>
 		</c:forEach>
- </table>
-</div>
-</div>
-</div>
-</body>
+ </table> -->
 </html>

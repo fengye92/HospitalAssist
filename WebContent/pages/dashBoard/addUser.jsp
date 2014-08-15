@@ -18,22 +18,23 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 	<%@ include file="../common/header.jsp" %>
 	
 	<div id="page-wrapper">
-		<div class="row">
-			<br/>
-            <div class="col-lg-12">
-                <ol class="breadcrumb">
-                    <li>
-                        <i class="fa fa-dashboard"></i>
-                        <span class="pic-title"><a href="pages/main.jsp">控制台</a></span>
-                    </li>
-                    <li class="active">
-                    	<i class="fa fa-fw fa-plus"></i>
-                       <span class="pic-title">添加用户</span>
-                    </li>
-                </ol>
-            </div>
-        </div>
-		<div class="row">
+		<div class="container-fluid">
+			<div class="row">
+				<br/>
+	            <div class="col-lg-12">
+	                <ol class="breadcrumb">
+	                    <li>
+	                        <i class="fa fa-dashboard"></i>
+	                        <span class="pic-title"><a href="pages/main.jsp">控制台</a></span>
+	                    </li>
+	                    <li class="active">
+	                    	<i class="fa fa-fw fa-plus"></i>
+	                       <span class="pic-title">添加用户</span>
+	                    </li>
+	                </ol>
+	            </div>
+	        </div>
+			<div class="row">
 			<form role="form" method="post" action="addUser.action">
   			<div class="form-group">
   				<div class="col-md-4 col-md-offset-4">
@@ -48,15 +49,14 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
     				<option value='1'>实习生</option>
      			</select>
     			<br/>
-    			</div>
-    			<div class="col-md-3 col-md-offset-7">
-	    			<button type="submit" class="btn btn-default" onClick="check()">
-	    				<i class="fa fa-fw fa-save"></i>提交
-	    			</button>
+    			<button type="submit" class="btn btn-default pull-right" onClick="check()">
+    				<i class="fa fa-fw fa-save"></i>提交
+    			</button>
     			</div>
   			</div>
   			</form>
   		</div>
+		</div>
 	</div>
 	</div>	
 		<!-- jQuery Version 1.11.0 -->
