@@ -38,6 +38,11 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 			<form role="form" method="post" action="addUser.action">
   			<div class="form-group">
   				<div class="col-md-4 col-md-offset-4">
+  				<% if(str!=null&&str.equals("error"))
+      	    	{
+      				out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'>用户名或者密码错误，请重新输入</div>");
+      	    	}
+      			%>
     			<label for="newUserId">新用户ID</label>
     			<input name="user.userId" type="text" class="form-control" id="newUserId" placeholder="用户ID" autofocus="">
     			<label for="newUserName">新用户姓名</label>
@@ -77,9 +82,9 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 		var v3=permission.value;
 		
 		if(v1===""||v2===""){
-			
-			alert("用户ID或姓名不能为空！");
-		
+      		//alert("asda");
+
+      		out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'>用户名或者密码错误，请重新输入</div>");
 			return false;
 		}
 	}

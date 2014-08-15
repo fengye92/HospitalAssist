@@ -101,6 +101,7 @@ String depart = (String)Session.getAttribute("department");
 		}
 	}
    </script>	
+</nav>	
 
    <!-- /.navbar-collapse -->      
 			

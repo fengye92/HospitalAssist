@@ -1,6 +1,8 @@
 package com.iel.hos.dao;
 
 import java.io.IOException;     
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
 import com.iel.hos.beans.User;
@@ -17,22 +19,15 @@ public class UserDao {
 	public int checkLogin(String userId, String passwd) throws IOException{    
 		Map<String, String> result = null;
 		try {
-
+			String md5Pwd = MD5Hash(passwd);
+			System.out.println(md5Pwd);
 			result = baseDao.getOneRecord("user", userId);
-			//result = baseDao.getOneCell("user", userId, "info","pwd" );
-
-			//result = baseDao.getOneRecord("user", userId);
-			//result = baseDao.getOneRecord("user", userId);
-			//for(String a : result.keySet()){
-			//	System.out.println(result.get(a));
-
-			//}
+		
 			if(result.get("Tag").equals("error")){
 				System.out.println("no this rowkey!!");
 				return NO_ROWKEY;
 			}else{
-				if(result.get("info : pwd").equals(passwd)){
-					System.out.println("new method" + Integer.parseInt(result.get("info : pwd")));
+				if(result.get("info : pwd").equals(md5Pwd)){
 					return Integer.parseInt(result.get("info : permission"));
 				}else{
 					System.out.println("wrong pwd!!");
@@ -120,7 +115,6 @@ public class UserDao {
 	
 	public int EditPwd(String userId,String exPwd,String newPwd)
 	{
-		System.out.print("bearbearsw");
 		Map<String, String> result = null;
 		try {
 			result =baseDao.getOneCell("user", userId, "info","pwd" );
@@ -160,4 +154,39 @@ public class UserDao {
 		}
 		return result.get("value");
 	}
+	
+	private String MD5Hash(String input){
+		String result = "";
+		if(input != null){
+			try {
+				MessageDigest md = MessageDigest.getInstance("MD5");
+				byte[] results = md.digest(input.getBytes());   
+				String resultString = byteArrayToHexString(results);  
+                return resultString.toUpperCase(); 
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return result; 
+	}
+	
+	private static String byteArrayToHexString(byte[] b){  
+        StringBuffer resultSb = new StringBuffer();  
+        for (int i = 0; i < b.length; i++){  
+            resultSb.append(byteToHexString(b[i]));  
+        }  
+        return resultSb.toString();  
+    }  
+      
+    private static String byteToHexString(byte b){  
+    	final String[] hexDigits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+        int n = b;  
+        if (n < 0)  
+            n = 256 + n;  
+        int d1 = n / 16;  
+        int d2 = n % 16;  
+        return hexDigits[d1] + hexDigits[d2];  
+    } 
 }
