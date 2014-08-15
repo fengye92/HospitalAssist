@@ -20,12 +20,12 @@ $('#birthday').datepicker({
 <html lang="en">
 <head>
 	<base href="<%=basePath%>">
-	<%@ include file="header_css.jsp" %> 
+	<%@ include file="../common/headerCss.jsp" %> 
 </head>
 
 <body>
 	<div id="wrapper">
-	<%@ include file="header.jsp" %>
+	<%@ include file="../common/header.jsp" %>
 	
 	<div id="page-wrapper">
 		<div class="container-fluid">

@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <%
 Object obj = session.getAttribute("userId");
 String contextPath = request.getContextPath();
-
+String str=(String)request.getAttribute("result");
 if(obj==null){
 }else{
 	response.sendRedirect(contextPath+"/pages/main.jsp");
@@ -38,8 +38,12 @@ if(obj==null){
         <input name="user.userPasswd" type="password" class="form-control" placeholder="密码" required="">
         
         <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+      	<% if(str!=null&&str.equals("error"))
+      	    {
+      		out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'>用户名或者密码错误，请重新输入</div>");
+      	    }
+      		%>
       </form>
-
     </div>
 </body>
 </html>
