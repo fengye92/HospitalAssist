@@ -15,7 +15,7 @@
       	
 		<action name="addUser" class="com.iel.hos.actions.UserAction" method="addUser">
 			<result name="success">/pages/dashBoard/addUser.jsp</result>
-			<result name="error">/pages/404.jsp</result>
+			<result name="error">/pages/common/404.jsp</result>
 		</action>
 		<action name="editPwd" class="com.iel.hos.actions.UserAction" method="editPwd">
 			<result name="success">/pages/common/logout.jsp</result>
