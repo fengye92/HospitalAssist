@@ -66,13 +66,16 @@ public class UserDao {
 	
 	public int modifyUser(User user){
 		try{
-			String[] values = new String[3];
-			values[0] = user.getUserName();
-			values[1] = user.getUserPasswd();
-			values[2] = "" + user.getPermission();
+			System.out.println(user.getUserName()+user.getDepartment()+user.getPermission()+
+					user.getDes()+user.getEmail());
+			String[] values = new String[4];
+			values[0] = user.getEmail();
+			values[1] = user.getDepartment();
+			values[2] = user.getDes();
+			values[3] = user.getTel();
 			
-			String[] family = {"info", "info", "info"};
-			String[] column = {"name", "pwd", "permission"};
+			String[] family = {"info","info","info","info"};
+			String[] column = {"emial","department","des","tel"};
 			
 			if(baseDao.checkIsExist("user", user.getUserId())== 1){
 				baseDao.addCellsRecord("user", user.getUserId(), family, column, values);
@@ -90,23 +93,6 @@ public class UserDao {
 	public int delUser(User user){
 		try{			
 			baseDao.delRecord("user", user.getUserId());
-		}catch (Exception e){
-			e.printStackTrace();
-		}
-		return 0;
-	}
-	
-	public int ModifyUser(User user){
-		try{
-			String[] values = new String[3];
-			values[0] = user.getUserName();
-			values[1] = user.getUserPasswd();
-			values[2] = "" + user.getPermission();
-			
-			String[] family = {"info", "info", "info"};
-			String[] column = {"name", "pwd", "permission"};
-			
-			baseDao.addCellsRecord("user", user.getUserId(), family, column, values);
 		}catch (Exception e){
 			e.printStackTrace();
 		}
@@ -188,5 +174,5 @@ public class UserDao {
         int d1 = n / 16;  
         int d2 = n % 16;  
         return hexDigits[d1] + hexDigits[d2];  
-    } 
+    }
 }

@@ -1,5 +1,8 @@
 package com.iel.hos.actions;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
@@ -13,7 +16,35 @@ public class UserAction{
 	private String exPwd;
 	private String newPwd;
 	private String message;
+	private String des;
+	private String tel;
+	private String email;
+	private String department;
 	
+	public String getDes() {
+		return des;
+	}
+	public void setDes(String des) {
+		this.des = des;
+	}
+	public String getTel() {
+		return tel;
+	}
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDepartment() {
+		return department;
+	}
+	public void setDepartment(String department) {
+		this.department = department;
+	}
 	public UserAction()
 	{
 		userService = new UserService();
@@ -41,14 +72,22 @@ public class UserAction{
 	public void setUser(User user) {
 		this.user = user;
 	}
-	public void setSession()
+	public void setSession() throws UnsupportedEncodingException
 	{
 		HttpSession session = ServletActionContext.getRequest().getSession();
 		user.setUserName(userService.getUserOneCell(user.getUserId(), "name"));
+		user.setDepartment(userService.getUserOneCell(user.getUserId(), "department"));
+		user.setTel(userService.getUserOneCell(user.getUserId(), "tel"));
+		user.setDes(userService.getUserOneCell(user.getUserId(), "des"));
+		user.setEmail(userService.getUserOneCell(user.getUserId(), "emial"));
 		session.setAttribute("username", user.getUserName());
 		session.setAttribute("userId", user.getUserId());
 		session.setAttribute("userPwd", user.getUserPasswd());
 		session.setAttribute("userPermission", user.getPermission());
+		session.setAttribute("tel", user.getTel());
+		session.setAttribute("email", user.getEmail());
+		session.setAttribute("department", URLDecoder.decode(user.getDepartment(), "UTF-8"));
+		session.setAttribute("des", user.getDes());
 	}
 	/**
 	 *   @return
@@ -128,7 +167,10 @@ public class UserAction{
 		session.removeAttribute("userId");
 		session.removeAttribute("userPwd");
 		session.removeAttribute("userPermission");
-
+		session.removeAttribute("tel");
+		session.removeAttribute("department");
+		session.removeAttribute("des");
+		session.removeAttribute("email");
 		return "success";
 	}
 
@@ -138,5 +180,26 @@ public class UserAction{
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	
+	public String editInfo(){
+		HttpSession session = ServletActionContext.getRequest().getSession();
+		User newUser = new User();
+		newUser.setUserId((String)session.getAttribute("userId"));
+		newUser.setDepartment(department);
+		newUser.setDes(des);
+		newUser.setEmail(email);
+		newUser.setTel(tel);
+		session.setAttribute("department", department);
+		session.setAttribute("tel", tel);
+		session.setAttribute("des", des);
+		session.setAttribute("email", email);
+		int i=userService.editInfo(newUser);
+		if(i==1){
+			return "success";
+		}
+		else{
+			return "error";
+		}
 	}
 }

@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="en">
 <head>
 	<base href="<%=basePath%>">
-	<%@ include file="../common/headerCss.jsp" %> 
+	<%@ include file="../common/headerCss.jsp" %>
 </head>
 
 <body>
@@ -33,7 +33,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </div>
 	        </div>
 			<div class="row">
-			<form role="form" onsubmit="" method="post" action="">
+			<form role="form" onsubmit="return check()" method="post" action="userInfo.action">
 	  			<div class="form-group">
 	    			<div class="col-md-4 col-md-offset-4">
 	    				<label>医生工号</label>
@@ -41,13 +41,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<label>权限</label>
 	    				<input disabled="true" class="form-control" placeholder=<%=userPerm_name %>></input>
 		    			<label for="">联系电话</label>
-		    			<input class="form-control" id="" value=<%=tel %>  autofocus="">
+		    			<input name="tel" class="form-control" id="" value=<%=tel %>  autofocus="">
 		    			<label for="">邮箱</label>
-		    			<input class="form-control" id="" value=<%=email %>>
+		    			<input name="email" class="form-control" id="" value=<%=email %>>
 		    			<label for="">所在科室</label>
-		    			<input class="form-control" id="" value=<%=depart %>>
+		    			<input name="department" class="form-control" id="" value=<%=depart %>>
 		    			<label>个人介绍</label>
-		    			<textarea class="form-control" rows="3" value=<%=des %>></textarea>
+		    			<textarea name="des" class="form-control" rows="3" value=<%=des %>></textarea>
 		    			<br/>
 		    			<button type="submit" class="btn btn-default pull-right">
 		    				<i class="fa fa-fw fa-save"></i>提交
@@ -63,6 +63,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script src="js/jquery-1.11.0.js"></script>
 	
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>	   
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+	function check()
+	{
+		String tel = document.getElementByName("tel").value;
+		String depart = document.getElementByName("department").value;
+		String email =  document.getElementByName("email").value;
+		if(tel==""||depart==""||email=="")
+			{
+			out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'>不能为空</div>");
+			return false;
+			}
+		
+	}	   
 </body>
 </html>

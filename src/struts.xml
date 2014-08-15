@@ -29,6 +29,10 @@
 			<result name="success">/pages/main.jsp</result>
 			<result name="error">/pages/404.jsp</result>
 		</action>
+		
+		<action name="userInfo" class="com.iel.hos.actions.UserAction" method="editInfo">
+			<result name="success">/pages/main.jsp</result>
+		</action>
 	</package>
     
     <!-- Add packages here -->

@@ -39,4 +39,8 @@ public class UserService {
 	{
 		return userDao.getUserOneCell(userId, attr);
 	}
+	public int editInfo(User user)
+	{
+		return userDao.modifyUser(user);
+	}
 }
