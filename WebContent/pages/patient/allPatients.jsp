@@ -4,7 +4,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE>
 <html>
 <head>
 	<base href="<%=basePath%>">
@@ -15,9 +15,94 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<%@ include file="../common/header.jsp" %>
 	<div id="page-wrapper">
 		<div class="container-fluid">
+			<div class="row page-header">
+				<div class="col-md-8">
+					<h2 >全部病人</h2>
+				</div>
+				<div class="col-md-4">
+					<button type="button" data-toggle="modal" data-target="#addPatient" class="btn btn-danger pull-right" style="margin-top:25px">添加病人</button>
+				</div>
+			</div>
+			<div class="row">
+				
+			</div>
 		</div>
 	</div>
 </div>
+
+
+<!-- 增加病人弹出对话框-->
+<div class="modal fade" id="addPatient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">添加病人</h4>
+      </div>
+      <div class="modal-body">
+		<form class="form-horizontal" role="form">
+		  <div class="form-group">
+		    <label for="inputEmail3" class="col-sm-2 control-label">病人编号</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" id="inputEmail3" placeholder="EX****" autofocus>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">病人姓名</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" id="inputPassword3" placeholder="某某" >
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">身份证号</label>
+		    <div class="col-sm-10">
+		      <input class="form-control" id="inputPassword3" placeholder="110101************">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
+		    <div class="col-sm-10">
+		         <select class="form-control" >
+    				<option value='1'>男</option>
+    				<option value='2'>女</option>
+     			</select>
+		    </div>
+		  </div>
+		 <div class="form-group">
+                <label for="dtp_input2" class="col-sm-2 control-label">出生日期</label>
+                <div class="col-sm-10">
+                	<input class="form-control"  placeholder="2014-08-15">
+		    	</div>
+          </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">电话号码</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  placeholder="">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="inputPassword3" class="col-sm-2 control-label">家庭住址</label>
+		    <div class="col-sm-10">
+		      <input class="form-control"  placeholder="">
+		    </div>
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">保存信息</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- jQuery Version 1.11.0 -->
+<script src="js/jquery-1.11.0.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>	 
+
 </body>
 <!--   <table class="table table-hover">
   	<tr>

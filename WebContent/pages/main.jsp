@@ -19,9 +19,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!-- 不同的页面内容在此处体现，header等其他信息一样 -->
 	<div id="page-wrapper">
 		<div class="container-fluid">
-			<div class="row">
+			<div class="row page-header">
 				<div class="col-lg-12">
-					<h2 class="page-header">全部数据统计</h2>
+					<h2 >数据统计</h2>
 				</div>
 			</div>
 			

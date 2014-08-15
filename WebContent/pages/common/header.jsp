@@ -100,8 +100,6 @@ String depart = (String)Session.getAttribute("department");
 			//jQuery("<li><a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a></li>").appendTo("#dropDownMenu");
 		}
 	}
-   </script>	
-</nav>	
-
-   <!-- /.navbar-collapse -->      
+</script>	
+<!-- /.navbar-collapse -->      
 			
