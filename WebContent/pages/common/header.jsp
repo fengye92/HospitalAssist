@@ -88,9 +88,7 @@ String depart = (String)Session.getAttribute("department");
 </nav>	
 </nav>	
 <script type="text/javascript">
-window.onload=function(){		
-	alert("sdfdsfsg");
-	
+window.onload=function(){			
 	var userPer="<%=userPerm_ss%>";
 	if(userPer == "1"){
 		document.getElementById("dropDownMenu").innerHTML+="<li class='divider'></li>";
