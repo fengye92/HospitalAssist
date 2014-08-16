@@ -71,6 +71,15 @@ String tran=(String)request.getAttribute("result");
 			if(test!=null&&test=="error"){
 				document.getElementById("formPwd").innerHTML+="<div class='alert alert-warning alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>原密码输入错误，请重新输入！</div>";
 			}
+			var userPer="<%=userPerm_ss%>";
+			if(userPer == "1"){
+				document.getElementById("dropDownMenu").innerHTML+="<li class='divider'></li>";
+				document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/common/logout.jsp' ><i class='fa fa-fw fa-power-off'></i><span class='pic-title'>退出</span></a></li>";
+			}else if(userPer == "2"||userPer == "3"){
+				document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/dashBoard/addUser.jsp'><i class='fa fa-fw fa-plus'></i><span class='pic-title'>添加用户</span></a></li>";
+				document.getElementById("dropDownMenu").innerHTML+="<li class='divider'></li>";
+				document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/common/logout.jsp' ><i class='fa fa-fw fa-power-off'></i><span class='pic-title'>退出</span></a></li>";
+			}
 		}
 		
 		function checkform(){
