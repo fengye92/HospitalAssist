@@ -40,10 +40,10 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
   				<div class="col-md-4 col-md-offset-4">
   				
     			<label for="newUserId" id="userIdLabel">新用户ID</label>
-    			<input name="user.userId" type="text" class="form-control" id="newUserId" placeholder="用户ID" autofocus="">
+    			<input name="user.userId" type="text" class="form-control" id="newUserId" placeholder="用户ID" autofocus="" required>
     			<span id="tip"></span>
     			<label for="newUserName" id="userNameLabel">新用户姓名</label>
-    			<input name="user.userName" type="text" class="form-control" id="newUserName" placeholder="用户姓名">
+    			<input name="user.userName" type="text" class="form-control" id="newUserName" placeholder="用户姓名" required>
     			<label for="newUserPwd">新用户密码（初始为000）</label>
     			<input type="text" class="form-control" id="newUserPwd" disabled="true"  placeholder="000">
     			<label for="newUserPermission">新用户权限</label>
@@ -77,24 +77,6 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 	<script src="js/bootstrap.min.js"></script>	 
 	
 	<script>
-	
-	function check(){
-		var id= document.getElementById("newUserId");
-		var name= document.getElementById("newUserName");
-		var permission= document.getElementById("newUserPermission");
-		var v1=id.value;
-		var v2=name.value;
-		var v3=permission.value;
-		
-		if(v1===""){
-			document.getElementById("userIdLabel").innerHTML="新用户ID（不能为空）";
-			return false;
-		}else if(v2===""){
-			document.getElementById("userNameLabel").innerHTML="新用户姓名（不能为空）";
-			
-			return false;
-		}
-	}
 	
 	window.onload=function(){		
 		var userPer="<%=userPer_ss%>";

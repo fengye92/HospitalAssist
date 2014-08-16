@@ -48,15 +48,6 @@ String depart = (String)Session.getAttribute("department");
                 <a href="pages/dashBoard/editPwd.jsp"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
 
             </li>
-            <li>
-                <a href="pages/dashBoard/addUser.jsp"><i class="fa fa-fw fa-plus"></i><span class="pic-title">添加用户</span></a>
-
-            </li>
-            
-            <li class="divider"></li>
-            <li>
-                <a href="pages/common/logout.jsp" ><i class="fa fa-fw fa-power-off"></i><span class="pic-title">退出</span></a>
-            </li>
         </ul>
     </li>
 	</ul>
@@ -96,6 +87,21 @@ String depart = (String)Session.getAttribute("department");
    </div>
 </nav>	
 </nav>	
+<script type="text/javascript">
+window.onload=function(){		
+	alert("sdfdsfsg");
+	
+	var userPer="<%=userPerm_ss%>";
+	if(userPer == "1"){
+		document.getElementById("dropDownMenu").innerHTML+="<li class='divider'></li>";
+		document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/common/logout.jsp' ><i class='fa fa-fw fa-power-off'></i><span class='pic-title'>退出</span></a></li>";
+	}else if(userPer == "2"||userPer == "3"){
+		document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/dashBoard/addUser.jsp'><i class='fa fa-fw fa-plus'></i><span class='pic-title'>添加用户</span></a></li>";
+		document.getElementById("dropDownMenu").innerHTML+="<li class='divider'></li>";
+		document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/common/logout.jsp' ><i class='fa fa-fw fa-power-off'></i><span class='pic-title'>退出</span></a></li>";
+	}
+}
+</script>
 
    <!-- /.navbar-collapse -->      
 			

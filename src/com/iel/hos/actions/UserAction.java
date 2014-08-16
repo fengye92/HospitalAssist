@@ -205,6 +205,8 @@ public class UserAction{
 			return "success";
 		}
 		else{
+			HttpServletRequest request = ServletActionContext.getRequest();
+			request.setAttribute("result", "error");
 			return "error";
 		}
 	}

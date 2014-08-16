@@ -2,6 +2,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String result = (String)request.getAttribute("result");
 %>
 
 <!DOCTYPE html>
@@ -41,17 +42,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	    				<label>权限</label>
 	    				<input disabled="true" class="form-control" placeholder=<%=userPerm_name %>></input>
 		    			<label for="">联系电话</label>
-		    			<input name="tel" class="form-control" id="" value=<%=tel %>  autofocus="">
+		    			<input name="tel" class="form-control" id="" value=<%=tel %>  autofocus="" required>
 		    			<label for="">邮箱</label>
-		    			<input name="email" class="form-control" id="" value=<%=email %>>
+		    			<input name="email" class="form-control" id="" value=<%=email %> required>
 		    			<label for="">所在科室</label>
-		    			<input name="department" class="form-control" id="" value=<%=depart %>>
+		    			<input name="department" class="form-control" id="" value=<%=depart %> required>
 		    			<label>个人介绍</label>
 		    			<textarea name="des" class="form-control" rows="3" value=<%=des %>></textarea>
 		    			<br/>
 		    			<button type="submit" class="btn btn-default pull-right">
 		    				<i class="fa fa-fw fa-save"></i>提交
 		    			</button>
+		    			<%if(result!=null&&result.equals("error")){
+		    				out.print("<button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>修改错误</div>");
+		    				}%>
 	    			</div>
 	  			</div>
   			</form>

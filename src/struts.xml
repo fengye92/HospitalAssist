@@ -32,6 +32,7 @@
 		
 		<action name="userInfo" class="com.iel.hos.actions.UserAction" method="editInfo">
 			<result name="success">/pages/main.jsp</result>
+			<result name="error">/pages/dashBoard/userInfo.jsp</result>
 		</action>
 	</package>
     
