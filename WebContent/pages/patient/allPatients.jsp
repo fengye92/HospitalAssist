@@ -24,7 +24,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 			<div class="row">
-				
+				<table class="table table-hover">
+  	<tr>
+  		<td>患者编号</td><td>姓名</td><td>年龄</td><td>性别</td><td>身份证号码</td><td>电话号码</td><td>地址</td>
+  	</tr>
+		<c:forEach var="p" items="${patients }" varStatus="status">
+		 <tr>
+		 	<td>${p.id }</td>
+ 			<td>${p.name }</td>
+ 			<td>${p.age }</td>
+ 			<td>${p.gender }</td>
+ 			<td>${p.idNum }</td>
+ 			<td>${p.telephone }</td>
+ 			<td>${p.address }</td>
+ 			</tr>
+		</c:forEach>
+ </table> 
 			</div>
 		</div>
 	</div>
@@ -104,20 +119,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="js/bootstrap.min.js"></script>	 
 
 </body>
-<!--   <table class="table table-hover">
-  	<tr>
-  		<td>患者编号</td><td>姓名</td><td>年龄</td><td>性别</td><td>身份证号码</td><td>电话号码</td><td>地址</td>
-  	</tr>
-		<c:forEach var="p" items="${patients }" varStatus="status">
-		 <tr>
-		 	<td>${p.id }</td>
- 			<td>${p.name }</td>
- 			<td>${p.age }</td>
- 			<td>${p.gender }</td>
- 			<td>${p.idNum }</td>
- 			<td>${p.telephone }</td>
- 			<td>${p.address }</td>
- 			</tr>
-		</c:forEach>
- </table> -->
 </html>
