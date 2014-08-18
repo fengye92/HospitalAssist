@@ -22,7 +22,7 @@
 			<result name="error">/pages/dashBoard/editPwd.jsp</result>
 		</action>
 		<action name="allpatients" class="com.iel.hos.actions.PatientAction" method="searchall">
-			<result name="success">/pages/patient/allpatients.jsp</result>
+			<result name="success">/pages/patient/allPatients.jsp</result>
 		</action>
 
 		<action name="fileupload" class="com.iel.hos.actions.FilesAction" method="doPost">
@@ -32,6 +32,7 @@
 		
 		<action name="userInfo" class="com.iel.hos.actions.UserAction" method="editInfo">
 			<result name="success">/pages/main.jsp</result>
+			<result name="error">/pages/dashBoard/userInfo.jsp</result>
 		</action>
 	</package>
     
