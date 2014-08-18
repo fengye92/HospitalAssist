@@ -4,18 +4,6 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 
-<script type="text/javascript">
-$('#birthday').datepicker({
-	  format: 'yyyy.mm.dd',
-	        weekStart: 1,
-	        autoclose: true,
-	        todayBtn: 'linked',
-	        language: 'zh-CN'
-	 }).on('changeDate',function(ev){
-	  var birth = ev.date.valueOf();
-	  alert(birth);
-});
-</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,6 +47,19 @@ $('#birthday').datepicker({
 	<script src="js/jquery-1.11.0.js"></script>
 	
 	<!-- Bootstrap Core JavaScript -->
-	<script src="js/bootstrap.min.js"></script>	     
+	<script src="js/bootstrap.min.js"></script>	 
+	
+<script type="text/javascript">
+$('#birthday').datepicker({
+	  format: 'yyyy.mm.dd',
+	        weekStart: 1,
+	        autoclose: true,
+	        todayBtn: 'linked',
+	        language: 'zh-CN'
+	 }).on('changeDate',function(ev){
+	  var birth = ev.date.valueOf();
+	  alert(birth);
+});
+</script>    
 </body>
 </html>

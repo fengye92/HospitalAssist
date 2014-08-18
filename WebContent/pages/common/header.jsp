@@ -86,7 +86,7 @@ String depart = (String)Session.getAttribute("department");
    </div>
    </div>
 </nav>	
-</nav>	
+</nav> 
 <script type="text/javascript">
 window.onload=function(){			
 	var userPer="<%=userPerm_ss%>";

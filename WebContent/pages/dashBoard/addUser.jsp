@@ -78,12 +78,21 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 	
 	<script>
 	
-	window.onload=function(){		
-		var userPer="<%=userPer_ss%>";
+	window.onload=function(){
+		var userPer="<%=userPerm_ss%>";
 		if(userPer==3){
 			jQuery("<option value='2'>医生</option>").appendTo("#newUserPermission");
 			jQuery("<option value='3'>管理员</option>").appendTo("#newUserPermission");
 		}
+		if(userPer == "1"){
+			document.getElementById("dropDownMenu").innerHTML+="<li class='divider'></li>";
+			document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/common/logout.jsp' ><i class='fa fa-fw fa-power-off'></i><span class='pic-title'>退出</span></a></li>";
+		}else if(userPer == "2"||userPer == "3"){
+			document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/dashBoard/addUser.jsp'><i class='fa fa-fw fa-plus'></i><span class='pic-title'>添加用户</span></a></li>";
+			document.getElementById("dropDownMenu").innerHTML+="<li class='divider'></li>";
+			document.getElementById("dropDownMenu").innerHTML+="<li><a href='pages/common/logout.jsp' ><i class='fa fa-fw fa-power-off'></i><span class='pic-title'>退出</span></a></li>";
+		}
+		
 	}
 	</script>    
 </body>
