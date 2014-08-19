@@ -96,7 +96,6 @@ public class PatientDao extends BaseDao{
 		{		    
 			if(i>=firstRow && i<endRow){
 				Patient p = new Patient();
-				System.out.println("aaaa");
 				String id=new String(r.getRow(),"utf-8");
 				p.setId(id);
 				for(Cell cell:r.rawCells())

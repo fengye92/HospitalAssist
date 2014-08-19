@@ -10,6 +10,8 @@ String message=(String)request.getAttribute("message");
 <head>
 	<base href="<%=basePath%>">
 	<%@ include file="../common/headerCss.jsp" %> 
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/plugins/dataTables.bootstrap.css">
 </head>
 <body>
 <div id="wrapper">
@@ -45,6 +47,24 @@ String message=(String)request.getAttribute("message");
 		</c:forEach>
  </table> 
 			</div>
+			<div class="container">
+				<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+					<thead>
+						<tr>
+							<th>患者编号</th>
+							<th>姓名</th>
+							<th>年龄</th>
+							<th>性别</th>
+							<th>身份证号</th>
+							<th>电话号码</th>
+							<th>地址</th>
+						</tr>
+					</thead>
+					<tbody>
+	
+					</tbody>
+				</table>
+		  </div>
 		</div>
 	</div>
 </div>
@@ -114,10 +134,26 @@ String message=(String)request.getAttribute("message");
 </div>
 </form>
 
+
 <!-- jQuery Version 1.11.0 -->
 <script src="js/jquery-1.11.0.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>	 
+
+<script src="js/plugins/jquery.dataTables.min.js"></script>
+<script src="js/plugins/dataTables.bootstrap.js"></script>
+<script>
+			$(document).ready(function() {
+				 $('#example').dataTable( {
+					 "bProcessing": true,
+				     "bServerSide": true,
+				     "sAjaxSource": "allpatients.action",
+				     "sPaginationType":"full_numbers",
+				     "bJQueryUI":true
+				     //"fnServerData":retrieveData
+				 } );
+			} );
+</script>
 </body>
 </html>
