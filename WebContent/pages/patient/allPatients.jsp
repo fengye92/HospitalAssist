@@ -26,6 +26,9 @@ String message=(String)request.getAttribute("message");
 			</div>
 			<div class="row">
 				<table class="table table-hover">
+	<%if(message!=null&&message.equals("error")){
+	    	  out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>插入失败</div>");
+		}%>
   	<tr>
   		<td>患者编号</td><td>姓名</td><td>年龄</td><td>性别</td><td>身份证号码</td><td>电话号码</td><td>地址</td>
   	</tr>
@@ -48,7 +51,7 @@ String message=(String)request.getAttribute("message");
 
 <form class="form-horizontal" role="form" method="post" action="addPatient.action">
 <!-- 增加病人弹出对话框-->
-<div class="modal fade" id="addPatient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="addPatient" data-target="#myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -79,7 +82,7 @@ String message=(String)request.getAttribute("message");
 		    <div class="col-sm-10">
 		         <select class="form-control" name="patient.gender">
     				<option value='1'>男</option>
-    				<option value='2'>女</option>
+    				<option value='0'>女</option>
      			</select>
 		    </div>
 		  </div>
@@ -106,9 +109,6 @@ String message=(String)request.getAttribute("message");
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
         <button type="submit" class="btn btn-primary" >保存信息</button>
       </div>
-      <%if(message == "error"){
-    	  out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'>插入失败</div>");
-      }%>
     </div>
   </div>
 </div>
@@ -119,6 +119,5 @@ String message=(String)request.getAttribute("message");
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>	 
-
 </body>
 </html>

@@ -71,7 +71,7 @@ public class PatientAction {
 			request.setAttribute("message", "success");
 			return "success";
 		}else{
-			HttpServletRequest request=ServletActionContext.getRequest();
+			HttpServletRequest request = ServletActionContext.getRequest();
 			request.setAttribute("message", "error");
 			return "error";
 		}
