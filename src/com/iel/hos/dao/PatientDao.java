@@ -1,6 +1,7 @@
 package com.iel.hos.dao;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -59,21 +60,21 @@ public class PatientDao extends BaseDao{
 		return 0;
 	}
 
-	public List<Patient> searchAll(Map<String,Object> parm, String parm_name) throws IOException {
+	public Map<String, Object> searchAll(Map<String,Object> parm, String parm_name) throws IOException {
 		// TODO Auto-generated method stub
 		HTable table = new HTable(getConf(), "patient"); 
 		int size ;
 		int curPage ;
 		
-		if(parm.get("size")==null||(Integer)parm.get("size")== 0L){
+		if(parm.get("size")==null||Integer.parseInt((String) parm.get("size"))== 0L){
 			size = 10;
 		}else{
-			size = (int) parm.get("size");
+			size = Integer.parseInt((String) parm.get("size"));
 		}
-		if(parm.get("curPage") == null || (Integer)parm.get("curPage")== 0L){
+		if(parm.get("curPage") == null || (Integer) parm.get("curPage")== 0L){
 			curPage = 1;
 		}else{
-			curPage = (int) parm.get("curPage");
+			curPage = (Integer) parm.get("curPage");
 		}
 		
 		
@@ -89,6 +90,8 @@ public class PatientDao extends BaseDao{
 		ResultScanner ss = table.getScanner(s);
 		int i = 0;
 		System.out.println(ss.toString());
+		Map<String, Object> re = new HashMap<String,Object>();
+		
 		for(Result r :ss)
 		{		    
 			if(i>=firstRow && i<endRow){
@@ -129,9 +132,12 @@ public class PatientDao extends BaseDao{
 			}
 			i++;
 		}
+		re.put("total", i);
+		re.put("pa", patients);
 		ss.close();
 		System.out.println(patients.size());
-		return patients;
+	
+		return re;
 	}
 
 }

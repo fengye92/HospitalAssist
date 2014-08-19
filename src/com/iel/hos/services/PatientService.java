@@ -32,11 +32,13 @@ public class PatientService {
 		return patientDao.modifyPatient(patient);
 	}
 
+	@SuppressWarnings("unchecked")
 	public PageUtil<Patient> searchAll(Map<String,Object> parm, String parm_name) throws IOException {
 		// TODO Auto-generated method stub
 		PageUtil<Patient> p = new PageUtil<Patient>();
-		p.setData(patientDao.searchAll( parm,parm_name));
-		p.setTotal(p.getData().size());
+		Map<String,Object> pa = patientDao.searchAll( parm,parm_name);
+		p.setData((List<Patient>) (pa.get("pa")));
+		p.setTotal((Integer) pa.get("total"));
 		return p;
 	}
 }

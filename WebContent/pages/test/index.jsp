@@ -26,8 +26,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				     "bServerSide": true,
 				     "sAjaxSource": "allpatients.action",
 				     "sPaginationType":"full_numbers",
-				     "bJQueryUI":true,
-				     "fnServerData":retrieveData
+				     "bJQueryUI":true
+				     //"fnServerData":retrieveData
 				 } );
 			} );
 		</script>
@@ -54,22 +54,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			
 		</div>
 	</body>
-	<script>
-	function retrieveData( sSource, aoData, fnCallback ) {    
-	    // 将客户名称加入参数数组  
-	   //aoData.push( { "name": "customerName", "value": "asdas" } );//添加自己的额外参数  
-	     alert(aoData[0].name);  
-	     alert(JSON.stringify(aoData));  
-	    $.ajax( {    
-	        "type": "get",     
-	        "contentType": "application/json",    
-	        "url": sSource,     
-	        "dataType": "json",    
-	        "data": { aoData: JSON.stringify(aoData) }, // 以json格式传递  
-	        "success": function(resp) {    
-	            fnCallback(resp.aaData);   
-	        }    
-	    });    
-	}    
-	</script>
 </html>

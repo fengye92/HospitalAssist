@@ -5,15 +5,9 @@ import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
-
 import org.apache.struts2.ServletActionContext;
-
 import com.iel.hos.beans.DataTableReturnObject;
 import com.iel.hos.beans.PageUtil;
 import com.iel.hos.beans.Patient;
@@ -24,6 +18,18 @@ public class PatientAction {
 	private Patient patient;
 	private String[][] aaData;   //这是实际读入表格的数据
 	private DataTableReturnObject tableReturnObject = null;
+	private String iDisplayStart;
+	private String sEcho;
+	private String parm_name;
+	private int iDisplayLength;
+	
+	public int getiDisplayLength() {
+		return iDisplayLength;
+	}
+
+	public void setiDisplayLength(int iDisplayLength) {
+		this.iDisplayLength = iDisplayLength;
+	}
 
 	public DataTableReturnObject getTableReturnObject() {
 		return tableReturnObject;
@@ -32,8 +38,6 @@ public class PatientAction {
 	public void setTableReturnObject(DataTableReturnObject tableReturnObject) {
 		this.tableReturnObject = tableReturnObject;
 	}
-	private String parm_name;
-	
 	public PatientService getPatientService() {
 		return patientService;
 	}
@@ -49,8 +53,6 @@ public class PatientAction {
 	public void setAaData(String[][] aaData) {
 		this.aaData = aaData;
 	}
-
-	
 
 	public String getParm_name() {
 		return parm_name;
@@ -106,39 +108,19 @@ public class PatientAction {
 			HttpServletRequest request=ServletActionContext.getRequest();
 			HttpServletResponse response = ServletActionContext.getResponse();  
 
-			String jsondata=request.getParameter("aoData");  
 	        response.setCharacterEncoding("UTF-8");  
-	        PrintWriter out = null;  
-	        System.out.println(jsondata);
-	        String json = null; // 返回的json数据  
-	        try {  
-	        	out = response.getWriter();  
-	        } catch (IOException e) {  
-	          // TODO Auto-generated catch block  
-	        	e.printStackTrace();  
-	        }  
-	        JSONArray jsonarray=JSONArray.fromObject(jsondata);
-	        System.out.println(jsonarray);
-
-	        String sEcho =null, iDisplayStart =null, iDisplayLength=null;
 	        
-	        for(int i=0;i<jsonarray.size();i++) //从传递参数里面选出待用的参数  
-	        {  
-	            JSONObject obj=(JSONObject)jsonarray.get(i);  
-	            if(obj.get("name").equals("sEcho"))  
-	                sEcho=obj.get("value").toString();  
-	            if(obj.get("name").equals("iDisplayStart"))  
-	                iDisplayStart=obj.get("value").toString();  
-	            if(obj.get("name").equals("iDisplayLength"))  
-	                iDisplayLength=obj.get("value").toString();  
-	            //System.out.println("name:"+obj.get("name")+";value:"+obj.get("value"));  
-	        }  
-			System.out.println(sEcho + " "+iDisplayStart+" "+ iDisplayLength);
+	        String sEcho = null, iDisplayStart = null, iDisplayLength= null;        
+	        sEcho = request.getParameter("sEcho");
+	        iDisplayStart = request.getParameter("iDisplayStart");
+	        iDisplayLength = request.getParameter("iDisplayLength");
+	        
+			System.out.println(sEcho + " iDisplayStart "+iDisplayStart+" iDisplay"+ iDisplayLength);
 			int cup = (int)(Integer.parseInt(iDisplayStart)/10) + 1;
 			
-			params.put(PageUtil.CURPAGE, 2);
-			params.put(PageUtil.SIZE, 1);
-			params.put(PageUtil.STARTPAGE, cup);
+			params.put(PageUtil.CURPAGE, cup);
+			params.put(PageUtil.SIZE, iDisplayLength);
+			params.put(PageUtil.STARTPAGE, iDisplayStart);
 			PageUtil<Patient> patientUtil = patientService.searchAll(params,parm_name);
 			patients = patientUtil.getData();
 			total = (int)patientUtil.getTotal();
@@ -165,9 +147,7 @@ public class PatientAction {
 		}
 		
 		aaData = resultArr;
-		String sEcho = (ServletActionContext.getRequest().getParameterMap().get("sEcho")[0]);
-		System.out.println("sEcho" + sEcho);
-		tableReturnObject = new DataTableReturnObject(3, 3, "2", aaData); 
+		tableReturnObject = new DataTableReturnObject(3, 1, sEcho, aaData); 
 		
 		HttpServletResponse response = ServletActionContext.getResponse();  
         response.setCharacterEncoding("utf-8"); 
@@ -178,5 +158,21 @@ public class PatientAction {
 		List<Patient> patients=patientService.searchall();
 		request.setAttribute("patients", patients);*/
 		//return "success";
+	}
+
+	public String getiDisplayStart() {
+		return iDisplayStart;
+	}
+
+	public void setiDisplayStart(String iDisplayStart) {
+		this.iDisplayStart = iDisplayStart;
+	}
+
+	public String getsEcho() {
+		return sEcho;
+	}
+
+	public void setsEcho(String sEcho) {
+		this.sEcho = sEcho;
 	}
 }
