@@ -2,6 +2,7 @@
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String message=(String)request.getAttribute("message");
 %>
 
 <!DOCTYPE>
@@ -45,7 +46,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</div>
 </div>
 
-
+<form class="form-horizontal" role="form" method="post" action="addPatient.action">
 <!-- 增加病人弹出对话框-->
 <div class="modal fade" id="addPatient" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -55,62 +56,63 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <h4 class="modal-title" id="myModalLabel">添加病人</h4>
       </div>
       <div class="modal-body">
-		<form class="form-horizontal" role="form">
 		  <div class="form-group">
-		    <label for="inputEmail3" class="col-sm-2 control-label">病人编号</label>
+		    <label for="inputEmail3" class="col-sm-2 control-label"  >病人编号</label>
 		    <div class="col-sm-10">
-		      <input class="form-control" id="inputEmail3" placeholder="EX****" autofocus>
+		      <input class="form-control" id="inputEmail3" name="patient.id" placeholder="EX****" autofocus required>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="inputPassword3" class="col-sm-2 control-label">病人姓名</label>
+		    <label for="inputPassword3" class="col-sm-2 control-label" >病人姓名</label>
 		    <div class="col-sm-10">
-		      <input class="form-control" id="inputPassword3" placeholder="某某" >
+		      <input class="form-control" id="inputPassword3" placeholder="某某" name="patient.name" required>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="inputPassword3" class="col-sm-2 control-label">身份证号</label>
+		    <label for="inputPassword3" class="col-sm-2 control-label"  >身份证号</label>
 		    <div class="col-sm-10">
-		      <input class="form-control" id="inputPassword3" placeholder="110101************">
+		      <input class="form-control" id="inputPassword3" name="patient.idNum" placeholder="110101************" required>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="inputPassword3" class="col-sm-2 control-label">性别</label>
+		    <label for="inputPassword3" class="col-sm-2 control-label"  required>性别</label>
 		    <div class="col-sm-10">
-		         <select class="form-control" >
+		         <select class="form-control" name="patient.gender">
     				<option value='1'>男</option>
     				<option value='2'>女</option>
      			</select>
 		    </div>
 		  </div>
 		 <div class="form-group">
-                <label for="dtp_input2" class="col-sm-2 control-label">出生日期</label>
+                <label for="dtp_input2" class="col-sm-2 control-label" >年龄</label>
                 <div class="col-sm-10">
-                	<input class="form-control"  placeholder="2014-08-15">
+                	<input class="form-control" id="inputPassword3" name="patient.age">
 		    	</div>
           </div>
 		  <div class="form-group">
-		    <label for="inputPassword3" class="col-sm-2 control-label">电话号码</label>
+		    <label for="inputPassword3" class="col-sm-2 control-label" >电话号码</label>
 		    <div class="col-sm-10">
-		      <input class="form-control"  placeholder="">
+		      <input class="form-control"  placeholder="" name="patient.telephone" required>
 		    </div>
 		  </div>
 		  <div class="form-group">
-		    <label for="inputPassword3" class="col-sm-2 control-label">家庭住址</label>
+		    <label for="inputPassword3" class="col-sm-2 control-label" >家庭住址</label>
 		    <div class="col-sm-10">
-		      <input class="form-control"  placeholder="">
+		      <input class="form-control"  placeholder="" name="patient.address" required>
 		    </div>
 		  </div>
-		</form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-        <button type="button" class="btn btn-primary">保存信息</button>
+        <button type="submit" class="btn btn-primary" >保存信息</button>
       </div>
+      <%if(message == "error"){
+    	  out.print("<div class='alert alert-warning alert-dismissible fade in' role='alert'>插入失败</div>");
+      }%>
     </div>
   </div>
 </div>
-
+</form>
 
 <!-- jQuery Version 1.11.0 -->
 <script src="js/jquery-1.11.0.js"></script>
