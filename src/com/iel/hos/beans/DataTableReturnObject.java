@@ -48,18 +48,21 @@ public class DataTableReturnObject {
 	 
 	 public String toJson(){
 		 String re = "";
-		 re+="{\"sEcho\":"+this.sEcho+",\"iTotalRecords\":"+this.iTotalRecords+",\"iTotalDisplayRecords\":"+this.iTotalDisplayRecords+",\"aaData\":[";
-		 for(int i=0;i<this.aaData.length;i++){
-			 re+="[";
-			 int j=0;
-			 for(j=0;j<this.aaData[0].length-1;j++){
-				 re+="\""+this.aaData[i][j]+"\",";
+		 if(this.aaData.length==0){
+			 re+="{\"sEcho\":"+this.sEcho+",\"iTotalRecords\":"+this.iTotalRecords+",\"iTotalDisplayRecords\":"+this.iTotalDisplayRecords+",\"aaData\":[]}";
+		 }else{
+			 re+="{\"sEcho\":"+this.sEcho+",\"iTotalRecords\":"+this.iTotalRecords+",\"iTotalDisplayRecords\":"+this.iTotalDisplayRecords+",\"aaData\":[";
+			 for(int i=0;i<this.aaData.length;i++){
+				 re+="[";
+				 int j=0;
+				 for(j=0;j<this.aaData[0].length-1;j++){
+					 re+="\""+this.aaData[i][j]+"\",";
+				 }
+				 re+="\""+this.aaData[i][j]+"\"],";
 			 }
-			 re+="\""+this.aaData[i][j]+"\"],";
-		 }
-		 re=re.substring(0,re.length()-1)+"]}";
+			 re=re.substring(0,re.length()-1)+"]}";
+		 } 
 		 System.out.println(re);
 		 return re;
-		 
 	 }
 }

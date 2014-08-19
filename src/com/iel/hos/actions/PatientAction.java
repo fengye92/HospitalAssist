@@ -1,7 +1,6 @@
 package com.iel.hos.actions;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,6 @@ public class PatientAction {
 	private Patient patient;
 	private String[][] aaData;   //这是实际读入表格的数据
 	private DataTableReturnObject tableReturnObject = null;
-	private String parm_name;
 	
 	public DataTableReturnObject getTableReturnObject() {
 		return tableReturnObject;
@@ -42,15 +40,6 @@ public class PatientAction {
 	public void setAaData(String[][] aaData) {
 		this.aaData = aaData;
 	}
-
-	public String getParm_name() {
-		return parm_name;
-	}
-
-	public void setParm_name(String parm_name) {
-		this.parm_name = parm_name;
-	}
-
 	
 	public String addPatient() throws Exception{
 		this.patientService = new PatientService();
@@ -90,7 +79,7 @@ public class PatientAction {
 		this.patientService = new PatientService();
 		int total = 0;
 		List<Patient> patients = null;
-		String sEcho = null, iDisplayStart = null, iDisplayLength= null;
+		String sEcho = null, iDisplayStart = null, iDisplayLength = null, sSearch = null;
 		
 		try{
 			Map<String,Object> params = new HashMap<String, Object>();
@@ -104,14 +93,14 @@ public class PatientAction {
 	        sEcho = request.getParameter("sEcho");
 	        iDisplayStart = request.getParameter("iDisplayStart");
 	        iDisplayLength = request.getParameter("iDisplayLength");
-	        
-			System.out.println(sEcho + " iDisplayStart "+iDisplayStart+" iDisplay"+ iDisplayLength);
+	        sSearch = request.getParameter("sSearch");
+			System.out.println(sEcho + " iDisplayStart "+iDisplayStart+" iDisplay"+ iDisplayLength +" sSearch"+sSearch);
 			int cup = (int)(Integer.parseInt(iDisplayStart)/10) + 1;
 			
 			params.put(PageUtil.CURPAGE, cup);
 			params.put(PageUtil.SIZE, iDisplayLength);
 			params.put(PageUtil.STARTPAGE, iDisplayStart);
-			PageUtil<Patient> patientUtil = patientService.searchAll(params,parm_name);
+			PageUtil<Patient> patientUtil = patientService.searchAll(params,sSearch);
 			patients = patientUtil.getData();
 			total = (int)patientUtil.getTotal();
 		}catch(Exception e){

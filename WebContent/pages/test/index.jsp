@@ -25,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					 "bProcessing": true,
 				     "bServerSide": true,
 				     "sAjaxSource": "allpatients.action",
-				     "sPaginationType":"full_numbers",
 				     "bJQueryUI":true
 				     //"fnServerData":retrieveData
 				 } );

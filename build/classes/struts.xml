@@ -34,6 +34,11 @@
 			<result name="success">/pages/main.jsp</result>
 			<result name="error">/pages/dashBoard/userInfo.jsp</result>
 		</action>
+		
+		<action name="addPatient" class="com.iel.hos.actions.PatientAction" method="addPatient">
+			<result name="success">/pages/main.jsp</result>
+			<result name="error">/pages/patient/allPatients.jsp</result>
+		</action>
 	</package>
     
     <!-- Add packages here -->

@@ -5,14 +5,13 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.hadoop.hbase.Cell;
 import org.apache.hadoop.hbase.CellUtil;
 import org.apache.hadoop.hbase.client.HTable;
 import org.apache.hadoop.hbase.client.Result;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.apache.hadoop.hbase.client.Scan;
-import org.apache.hadoop.hbase.filter.FirstKeyOnlyFilter;
+import org.apache.hadoop.hbase.filter.PrefixFilter;
 
 import com.iel.hos.beans.Patient;
 
@@ -60,7 +59,7 @@ public class PatientDao extends BaseDao{
 		return 0;
 	}
 
-	public Map<String, Object> searchAll(Map<String,Object> parm, String parm_name) throws IOException {
+	public Map<String, Object> searchAll(Map<String,Object> parm, String sSearch) throws IOException {
 		// TODO Auto-generated method stub
 		HTable table = new HTable(getConf(), "patient"); 
 		int size ;
@@ -80,16 +79,17 @@ public class PatientDao extends BaseDao{
 		
 		int firstRow = (curPage-1)*size;
 		int endRow = firstRow+size;
-		System.out.println(firstRow+""+endRow);
 		Scan s = new Scan(); 
 		//s.setFilter(new FirstKeyOnlyFilter());
+		if(sSearch != null && !sSearch.equals("") ){
+			s.setFilter(new PrefixFilter(sSearch.getBytes()));
+		}
 		s.setCaching(1000);
 		s.setCacheBlocks(false);
 		
 		List<Patient> patients=new LinkedList<Patient>();
 		ResultScanner ss = table.getScanner(s);
 		int i = 0;
-		System.out.println(ss.toString());
 		Map<String, Object> re = new HashMap<String,Object>();
 		
 		for(Result r :ss)
