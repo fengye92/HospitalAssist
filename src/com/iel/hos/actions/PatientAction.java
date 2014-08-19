@@ -18,19 +18,8 @@ public class PatientAction {
 	private Patient patient;
 	private String[][] aaData;   //这是实际读入表格的数据
 	private DataTableReturnObject tableReturnObject = null;
-	private String iDisplayStart;
-	private String sEcho;
 	private String parm_name;
-	private int iDisplayLength;
 	
-	public int getiDisplayLength() {
-		return iDisplayLength;
-	}
-
-	public void setiDisplayLength(int iDisplayLength) {
-		this.iDisplayLength = iDisplayLength;
-	}
-
 	public DataTableReturnObject getTableReturnObject() {
 		return tableReturnObject;
 	}
@@ -101,7 +90,8 @@ public class PatientAction {
 		this.patientService = new PatientService();
 		int total = 0;
 		List<Patient> patients = null;
-
+		String sEcho = null, iDisplayStart = null, iDisplayLength= null;
+		
 		try{
 			Map<String,Object> params = new HashMap<String, Object>();
 			
@@ -110,7 +100,7 @@ public class PatientAction {
 
 	        response.setCharacterEncoding("UTF-8");  
 	        
-	        String sEcho = null, iDisplayStart = null, iDisplayLength= null;        
+	                
 	        sEcho = request.getParameter("sEcho");
 	        iDisplayStart = request.getParameter("iDisplayStart");
 	        iDisplayLength = request.getParameter("iDisplayLength");
@@ -138,16 +128,16 @@ public class PatientAction {
 			String oID = pa.getId();
 			resultOne[0] = oID;
 			resultOne[1] = pa.getName();
-			resultOne[2] = pa.getIdNum();
-			resultOne[3] = pa.getTelephone();
-			resultOne[4] = "" + pa.getAge();
-			resultOne[5] = "" + pa.getGender();
-			resultOne[6] = pa.getAddress();
+			resultOne[2] = "" + pa.getAge();
+			resultOne[3] = "" + (pa.getGender()==1?"男":"女");
+			resultOne[4] = (pa.getIdNum()==null?"":pa.getIdNum());
+			resultOne[5] = (pa.getTelephone()==null?"":pa.getTelephone());
+			resultOne[6] = (pa.getAddress()==null?"":pa.getAddress());
 			resultArr[i] = resultOne;
 		}
 		
 		aaData = resultArr;
-		tableReturnObject = new DataTableReturnObject(3, 1, sEcho, aaData); 
+		tableReturnObject = new DataTableReturnObject(total, total, sEcho, aaData); 
 		
 		HttpServletResponse response = ServletActionContext.getResponse();  
         response.setCharacterEncoding("utf-8"); 
@@ -158,21 +148,5 @@ public class PatientAction {
 		List<Patient> patients=patientService.searchall();
 		request.setAttribute("patients", patients);*/
 		//return "success";
-	}
-
-	public String getiDisplayStart() {
-		return iDisplayStart;
-	}
-
-	public void setiDisplayStart(String iDisplayStart) {
-		this.iDisplayStart = iDisplayStart;
-	}
-
-	public String getsEcho() {
-		return sEcho;
-	}
-
-	public void setsEcho(String sEcho) {
-		this.sEcho = sEcho;
 	}
 }

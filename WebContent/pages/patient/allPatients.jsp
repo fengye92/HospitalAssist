@@ -10,6 +10,8 @@ String message=(String)request.getAttribute("message");
 <head>
 	<base href="<%=basePath%>">
 	<%@ include file="../common/headerCss.jsp" %> 
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/plugins/dataTables.bootstrap.css">
 </head>
 <body>
 <div id="wrapper">
@@ -24,24 +26,24 @@ String message=(String)request.getAttribute("message");
 					<button type="button" data-toggle="modal" data-target="#addPatient" class="btn btn-danger pull-right" style="margin-top:25px">添加病人</button>
 				</div>
 			</div>
-			<div class="row">
-				<table class="table table-hover">
-  	<tr>
-  		<td>患者编号</td><td>姓名</td><td>年龄</td><td>性别</td><td>身份证号码</td><td>电话号码</td><td>地址</td>
-  	</tr>
-		<c:forEach var="p" items="${patients }" varStatus="status">
-		 <tr>
-		 	<td>${p.id }</td>
- 			<td>${p.name }</td>
- 			<td>${p.age }</td>
- 			<td>${p.gender }</td>
- 			<td>${p.idNum }</td>
- 			<td>${p.telephone }</td>
- 			<td>${p.address }</td>
- 			</tr>
-		</c:forEach>
- </table> 
-			</div>
+			<div class="container">
+				<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="example">
+					<thead>
+						<tr>
+							<th>患者编号</th>
+							<th>姓名</th>
+							<th>年龄</th>
+							<th>性别</th>
+							<th>身份证号</th>
+							<th>电话号码</th>
+							<th>地址</th>
+						</tr>
+					</thead>
+					<tbody>
+	
+					</tbody>
+				</table>
+		  </div>
 		</div>
 	</div>
 </div>
@@ -114,11 +116,25 @@ String message=(String)request.getAttribute("message");
 </div>
 </form>
 
+
 <!-- jQuery Version 1.11.0 -->
 <script src="js/jquery-1.11.0.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>	 
-
+<script src="js/plugins/jquery.dataTables.min.js"></script>
+<script src="js/plugins/dataTables.bootstrap.js"></script>
+<script>
+			$(document).ready(function() {
+				 $('#example').dataTable( {
+					 "bProcessing": true,
+				     "bServerSide": true,
+				     "sAjaxSource": "allpatients.action",
+				     "sPaginationType":"full_numbers",
+				     "bJQueryUI":true
+				     //"fnServerData":retrieveData
+				 } );
+			} );
+</script>
 </body>
 </html>
