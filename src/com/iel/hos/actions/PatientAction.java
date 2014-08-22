@@ -115,7 +115,7 @@ public class PatientAction {
 			String[] resultOne = new String[7];   
 			Patient pa = patients.get(i);
 			String oID = pa.getId();
-			resultOne[0] = oID;
+			resultOne[0] = "<a href='searchone.action?oID="+oID+"'"+">"+oID+"</a>";
 			resultOne[1] = pa.getName();
 			resultOne[2] = "" + pa.getAge();
 			resultOne[3] = "" + (pa.getGender()==1?"男":"女");
@@ -137,5 +137,13 @@ public class PatientAction {
 		List<Patient> patients=patientService.searchall();
 		request.setAttribute("patients", patients);*/
 		//return "success";
+	}
+	public String searchone()throws Exception{
+		this.patientService = new PatientService();
+		HttpServletRequest request = ServletActionContext.getRequest();  
+        String id = request.getParameter("oID");
+		Patient p=this.patientService.searchone(id);
+		request.setAttribute("patient", p);
+		return "success";
 	}
 }
