@@ -14,7 +14,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <body>
 <form action="fileupload.action" method="post" enctype="multipart/form-data">
 		<div>
-                <input type="file" id="uploadfile">
+                <input type="file" id="uploadfile" multiple>
                 <div id="box"> </div>
             </div>
 
@@ -48,7 +48,6 @@ document.getElementById("uploadfile").addEventListener("change", function() {
       if(chunks<=3){
     	  currentChunk++;
           
-          //如果文件处理完成计算MD5，如果还有分片继续处理
           if (currentChunk < chunks) {
               loadNext(currentChunk);
           } else {
@@ -81,7 +80,7 @@ document.getElementById("uploadfile").addEventListener("change", function() {
 	   
        fileReader.readAsBinaryString(blobSlice.call(file, start, end));
    }
-
+	
     loadNext(0);
 });
 </script>

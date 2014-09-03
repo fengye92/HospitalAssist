@@ -3,5 +3,6 @@ encoding//WebContent/pages/common/header.jsp=UTF-8
 encoding//WebContent/pages/common/headerCss.jsp=UTF-8
 encoding//WebContent/pages/patient/allPatients.jsp=UTF-8
 encoding//WebContent/pages/test/datatablesTest.jsp=UTF-8
+encoding//WebContent/pages/test/md5filefolder.jsp=UTF-8
 encoding/<project>=UTF-8
 separateDerivedEncodings=true
