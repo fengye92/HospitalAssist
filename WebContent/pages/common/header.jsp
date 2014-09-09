@@ -46,7 +46,6 @@ String depart = (String)Session.getAttribute("department");
 			</li>
             <li>
                 <a href="pages/dashBoard/editPwd.jsp"><i class="fa fa-fw fa-wrench"></i><span class="pic-title">修改密码</span></a>
-
             </li>
         </ul>
     </li>
@@ -59,29 +58,23 @@ String depart = (String)Session.getAttribute("department");
 	<div class="sidebar-nav navbar-collapse">
 		<ul class="nav" id="side-menu">
 			<li>
-				<a class="active" href="pages/main.jsp"><i class="fa fa-fw fa-dashboard"></i><span class="pic-title">控制台</span></a>
-			</li>
-			<li>
-            	<a href="pages/patient/allPatients.jsp"><i class="fa fa-fw fa-group"></i><span class="pic-title">管理病人</span></a>
+            	<a href="pages/patient/allPatients.jsp"><i class="fa fa-fw fa-group"></i><span class="pic-title">病人信息</span></a>
             </li>
 			<li>
-            	<a href="#"><i class="fa fa-fw fa-file"></i><span class="pic-title">病例信息</span></a>
+            	<a href="#"><i class="fa fa-fw fa-cloud-upload"></i><span class="pic-title">上传数据</span></a>
             </li>
         	<li>
-        		<a href="#"><i class="fa fa-fw fa-table"></i><span class="pic-title">统计表格</span></a>
+        		<a href="#"><i class="fa fa-fw fa-lock"></i><span class="pic-title">私人空间</span></a>
         	</li>
         	<li>
-            	<a href="#"><i class="fa fa-fw fa-file-image-o"></i><span class="pic-title">医学图像</span></a>
+            	<a href="#"><i class="fa fa-fw fa-cloud"></i><span class="pic-title">公有空间</span></a>
             </li>
-            <li>
-            	<a href="#"><i class="fa fa-fw fa-file-video-o"></i><span class="pic-title">步态视频</span></a>
-            </li>
-            <li>
-            	<a href="#"><i class="fa fa-fw fa-edit"></i><span class="pic-title">笔记数据</span></a>
-            </li>
+            <!--  <li>
+				<a class="active" href="pages/main.jsp"><i class="fa fa-fw fa-dashboard"></i><span class="pic-title">数据统计</span></a>
+			</li>
             <li>
             	<a href="#"><i class="fa fa-fw fa-book"></i> <span class="pic-title">操作记录</span></a>
-            </li>
+            </li>-->
        </ul>
    </div>
    </div>
