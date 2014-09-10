@@ -39,9 +39,7 @@ String message=(String)request.getAttribute("message");
 							<th>姓名</th>
 							<th>年龄</th>
 							<th>性别</th>
-							<th>身份证号</th>
 							<th>电话号码</th>
-							<th>地址</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -146,14 +144,13 @@ $(document).ready(function() {
 			 "sProcessing": false
 		 },
 		 "bAutoWidth": false,                    //不自动计算列宽度   
-        "aoColumns": [                          //设定各列宽度   
-               {"sWidth": "15px"},   
-               {"sWidth": "100px"},   
-               {"sWidth": "160px"},   
-               {"sWidth": "80px"},   
-               {"sWidth": "120px"},   
-               {"sWidth": "100px"},   
-               {"sWidth": "180px"}  
+         "aoColumns": [                          //设定各列宽度   
+               {"sWidth": "20%"},   
+               {"sWidth": "20%"},   
+               {"sWidth": "20%"},   
+               {"sWidth": "20%"},   
+               {"sWidth": "20%"}  
+               
                        ],  
 		 "bProcessing": true,
 	     "bServerSide": true,

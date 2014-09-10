@@ -112,16 +112,14 @@ public class PatientAction {
 		String[][] resultArr = new String[patients.size()][];
 		
 		for (int i = 0; i < resultArr.length; i++) {
-			String[] resultOne = new String[7];   
+			String[] resultOne = new String[5];   
 			Patient pa = patients.get(i);
 			String oID = pa.getId();
 			resultOne[0] = "<a href='searchone.action?oID="+oID+"'"+">"+oID+"</a>";
 			resultOne[1] = pa.getName();
 			resultOne[2] = "" + pa.getAge();
 			resultOne[3] = "" + (pa.getGender()==1?"男":"女");
-			resultOne[4] = (pa.getIdNum()==null?"":pa.getIdNum());
-			resultOne[5] = (pa.getTelephone()==null?"":pa.getTelephone());
-			resultOne[6] = (pa.getAddress()==null?"":pa.getAddress());
+			resultOne[4] = (pa.getTelephone()==null?"":pa.getTelephone());
 			resultArr[i] = resultOne;
 		}
 		
@@ -138,6 +136,8 @@ public class PatientAction {
 		request.setAttribute("patients", patients);*/
 		//return "success";
 	}
+	
+	/*
 	public String searchone()throws Exception{
 		this.patientService = new PatientService();
 		HttpServletRequest request = ServletActionContext.getRequest();  
@@ -145,5 +145,5 @@ public class PatientAction {
 		Patient p=this.patientService.searchone(id);
 		request.setAttribute("patient", p);
 		return "success";
-	}
+	}*/
 }

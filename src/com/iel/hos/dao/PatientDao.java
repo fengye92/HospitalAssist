@@ -118,7 +118,7 @@ public class PatientDao extends BaseDao{
 				  	{
 				  		p.setGender(Integer.parseInt(value));
 				  	}
-				  	if(tmp.equals("tel"))
+				  	if(tmp.equals("telephone"))
 				  	{
 				  		p.setTelephone(value);
 				  	}
