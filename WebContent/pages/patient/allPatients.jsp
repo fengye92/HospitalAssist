@@ -19,11 +19,14 @@ String message=(String)request.getAttribute("message");
 	<div id="page-wrapper">
 		<div class="container-fluid">
 			<div class="row page-header">
-				<div class="col-md-8">
+				<div class="col-md-9">
 					<h2 >全部病人</h2>
 				</div>
-				<div class="col-md-4">
-					<button type="button" data-toggle="modal" data-target="#addPatient" class="btn btn-danger pull-right" style="margin-top:25px">添加病人</button>
+				<div class="col-md-3 " style="margin-top:25px">
+					<div class="btn-group pull-right">
+					<button type="button" data-toggle="modal" data-target="#addPatient" class="btn btn-danger " >添加病人</button>
+					<button type="button"  class="btn btn-danger">添加病例</button>
+					</div>
 				</div>
 			</div>
 			<div class="row">
@@ -32,7 +35,7 @@ String message=(String)request.getAttribute("message");
 			}%>
   
 			</div>
-				<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="patientsInfo">
+			<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="patientsInfo">
 					<thead>
 						<tr>
 							<th>患者编号</th>
@@ -88,9 +91,9 @@ String message=(String)request.getAttribute("message");
 		    </div>
 		  </div>
 		 <div class="form-group">
-                <label for="dtp_input2" class="col-sm-2 control-label" >年龄</label>
+                <label for="dtp_input2" class="col-sm-2 control-label" >出生日期</label>
                 <div class="col-sm-10">
-                	<input class="form-control" id="inputPassword3" name="patient.age">
+                	<input class="form-control" id="inputPassword3" name="patient.age" placeholder="1960-01-01">
 		    	</div>
           </div>
 		  <div class="form-group">
@@ -126,7 +129,10 @@ String message=(String)request.getAttribute("message");
 <script src="js/plugins/dataTables.bootstrap.js"></script>
 <script>
 $(document).ready(function() {
-	 $('#patientsInfo').dataTable( {
+	$('#side-menu>li').children('#patientInfo').addClass('active');
+	
+	
+	$('#patientsInfo').dataTable( {
 		 "oLanguage": {
 			 "sLengthMenu": "每页显示 _MENU_ 条记录",
 			 "sZeroRecords": "抱歉， 没有找到",

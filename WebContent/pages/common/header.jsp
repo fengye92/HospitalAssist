@@ -58,19 +58,19 @@ String depart = (String)Session.getAttribute("department");
 	<div class="sidebar-nav navbar-collapse">
 		<ul class="nav" id="side-menu">
 			<li>
-            	<a href="pages/patient/allPatients.jsp"><i class="fa fa-fw fa-group"></i><span class="pic-title">病人信息</span></a>
+            	<a id="patientInfo" href="pages/patient/allPatients.jsp"><i class="fa fa-fw fa-group"></i><span class="pic-title">病人信息</span></a>
             </li>
 			<li>
-            	<a href="#"><i class="fa fa-fw fa-cloud-upload"></i><span class="pic-title">上传数据</span></a>
+            	<a id="upload" href="#"><i class="fa fa-fw fa-cloud-upload"></i><span class="pic-title">上传数据</span></a>
             </li>
         	<li>
-        		<a href="#"><i class="fa fa-fw fa-lock"></i><span class="pic-title">私人空间</span></a>
+        		<a id="private" href="#"><i class="fa fa-fw fa-lock"></i><span class="pic-title">私人空间</span></a>
         	</li>
         	<li>
-            	<a href="#"><i class="fa fa-fw fa-cloud"></i><span class="pic-title">公有空间</span></a>
+            	<a id="public" href="#"><i class="fa fa-fw fa-cloud"></i><span class="pic-title">公有空间</span></a>
             </li>
             <!--  <li>
-				<a class="active" href="pages/main.jsp"><i class="fa fa-fw fa-dashboard"></i><span class="pic-title">数据统计</span></a>
+				<a href="pages/main.jsp"><i class="fa fa-fw fa-dashboard"></i><span class="pic-title">数据统计</span></a>
 			</li>
             <li>
             	<a href="#"><i class="fa fa-fw fa-book"></i> <span class="pic-title">操作记录</span></a>
