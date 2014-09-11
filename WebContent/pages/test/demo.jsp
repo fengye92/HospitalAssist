@@ -5,7 +5,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 
 <!DOCTYPE>
-<html>
+<html lang="zh-CN">
 <head>
 	<base href="<%=basePath%>">
 	<%@ include file="../common/headerCss.jsp" %> 

@@ -44,6 +44,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			      <div class="panel-body">
 			      	<div class="row">
 			      		<div class="col-md-4">
+							<label  class="control-label col-xs-4" style="margin-top:5px">出生日期：</label>
+							<div class="col-xs-8">
+			                	<input class="form-control"  placeholder="1960-01-01">
+					    	</div>
+						</div>
+						<div class="col-md-4">
+			      			<label  class="control-label col-xs-3" style="margin-top:5px">年龄：</label>
+			      			<label  class="control-label col-xs-3" style="margin-top:5px">63</label>
+			      		</div>
+						<div class="col-md-4">
 			      			<label  class="control-label col-xs-3" style="margin-top:5px">性别：</label>
 			      			<div class="col-xs-4">
 					         <select class="form-control ">
@@ -52,31 +62,44 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			     			</select>
 			     			</div>
 			      		</div>
-			      		<div class="col-md-4">
-			      			<label  class="control-label col-xs-3" style="margin-top:5px">年龄：</label>
-			      			<label  class="control-label col-xs-3" style="margin-top:5px">63</label>
-			      		</div>
-			      		<div class="col-md-4">
-							<label  class="control-label col-xs-4" style="margin-top:5px">出生日期：</label>
+			      	</div>
+			      	<br>
+			      	<div class="row">
+						<div class="col-md-4">
+							<label  class="control-label col-xs-4" >身份证<br/>号码：</label>
 							<div class="col-xs-8">
-			                	<input class="form-control"  placeholder="1960-01-01">
+			                	<input class="form-control"  placeholder="110***************">
+					    	</div>
+						</div>
+						<div class="col-md-4">	
+							<label  class="control-label col-xs-4" style="margin-top:5px">联系电话：</label>
+							<div class="col-xs-8">
+			                	<input class="form-control"  placeholder="13*********">
 					    	</div>
 						</div>
 			      	</div>
-			      	<br/>
+			      	<br>
 			      	<div class="row">
 						<div class="col-md-4">
-							<label  class="control-label col-xs-3" style="margin-top:5px">电话：</label>
+							<label  class="control-label col-xs-4" >备用<br/>联系人：</label>
 							<div class="col-xs-8">
-			                	<input class="form-control"  placeholder="13622033088">
+			                	<input class="form-control"  placeholder="某某">
 					    	</div>
 						</div>
-						<div class="col-md-4">
-							<label  class="control-label col-xs-3" style="margin-top:5px">身份证号：</label>
+						<div class="col-md-4">	
+							<label  class="control-label col-xs-4" style="margin-top:5px">备用电话：</label>
 							<div class="col-xs-8">
-			                	<input class="form-control"  placeholder="120105199009280017">
+			                	<input class="form-control"  placeholder="13*********">
 					    	</div>
-						</div>			      		
+						</div>
+			      	</div>
+			      	<br>
+			      	<div class="row">
+			      		<div class="col-md-2 col-md-offset-10">
+			      		<button  type="button" class="btn btn-primary">
+			      			<i class="fa fa-fw fa-save"></i><span class="pic-title">保存</span>
+			      		</button>
+			      		</div>
 			      	</div>
 			      </div>
 			    </div>

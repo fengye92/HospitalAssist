@@ -20,7 +20,7 @@ int userPer_ss = (Integer)session.getAttribute("userPermission");
 	<div id="page-wrapper">
 		<div class="container-fluid">
 			<div class="row">
-				<br/>
+				<br>
 	            <div class="col-lg-12">
 	                <ol class="breadcrumb">
 	                    <li>
