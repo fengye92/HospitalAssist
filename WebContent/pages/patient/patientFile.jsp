@@ -8,9 +8,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html lang="zh-CN">
 <head>
 	<base href="<%=basePath%>">
-	<%@ include file="../common/headerCss.jsp" %> 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/plugins/dataTables.bootstrap.css">
+	<%@ include file="../common/headerCss.jsp" %>
+	<style>
+		.omitFileNmae{
+			width: 100%;
+			overflow: hidden; /* 超出的部分隐藏起来 */  
+			white-space: nowrap;/* 不显示的地方用省略号...代替 */
+			text-overflow: ellipsis;/* 支持 IE */  
+			-o-text-overflow: ellipsis;/* 支持 Opera */  
+		}
+	</style> 
 </head>
 <body>
 <div id="wrapper">
@@ -35,79 +42,53 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	            </div>
 	        </div>
 			<div class="row">
-				<div class="col-md-3">
+				<div class="col-md-2">
+					<div class="thumbnail" >
+						<a href=""><img data-src="holder.js/300x300" alt="..."></a>
+					 	<div class="caption ">
+					 		<p class="omitFileNmae">****文件.jpg</p>
+					 	</div> 
+					</div>
+				</div>
+				<div class="col-md-2">
 					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
+						<a href=""><img data-src="holder.js/300x300" alt="..."></a>
 					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+					 		<p class="omitFileNmae">****文件夹</p>
 					 	</div>
 					</div>
 				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
+					<div class="thumbnail" >
+						<a href="#">
+							<img src="http://localhost:8080/HospitalAssist/img/excel_test_3.png" >
+					 	</a>
+					 	<div class="caption ">
+					 		<p class="omitFileNmae">****文件.jpg</p>
+					 	</div> 
+					</div>
+				</div>
+				<div class="col-md-2">
 					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
+						<a href="#">
+							<img src="http://localhost:8080/HospitalAssist/img/excel_test_4.png" >
+					 	</a>
 					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+					 		<p class="omitFileNmae">****文件夹</p>
 					 	</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
+				<div class="col-md-2">
+					<div class="thumbnail" >
+						<a href="#">
+							<img src="http://localhost:8080/HospitalAssist/img/excel_test_1.png" >
+					 	</a>
 					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+					 		<p class="omitFileNmae">某某某.xls</p>
 					 	</div>
 					</div>
 				</div>
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
-					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					 	</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
-					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					 	</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
-					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					 	</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
-					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					 	</div>
-					</div>
-				</div>
-				<div class="col-md-3">
+				<div class="col-md-2">
 					<div class="thumbnail"  href="#">
 						<img data-src="holder.js/300x300" alt="...">
 					 	<div class="caption">
@@ -118,48 +99,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
-					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					 	</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
-					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					 	</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
-					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					 	</div>
-					</div>
-				</div>
-				<div class="col-md-3">
-					<div class="thumbnail"  href="#">
-						<img data-src="holder.js/300x300" alt="...">
-					 	<div class="caption">
-					 		<h3>Thumbnail label</h3>
-					 		<p>...</p>
-					 		<p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-					 	</div>
-					</div>
-				</div>
-			</div>
+		
 			<div class="row">
 				<ul class="pagination pull-right">
 				  <li><a href="#">&laquo;</a></li>

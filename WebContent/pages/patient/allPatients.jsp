@@ -10,7 +10,6 @@ String message=(String)request.getAttribute("message");
 <head>
 	<base href="<%=basePath%>">
 	<%@ include file="../common/headerCss.jsp" %> 
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/plugins/dataTables.bootstrap.css">
 </head>
 <body>
