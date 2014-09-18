@@ -15,7 +15,10 @@ import org.apache.hadoop.hbase.TableName;
 import org.apache.hadoop.hbase.client.Delete;  
 import org.apache.hadoop.hbase.client.Get;  
 import org.apache.hadoop.hbase.client.HBaseAdmin;  
+import org.apache.hadoop.hbase.client.HConnection;
+import org.apache.hadoop.hbase.client.HConnectionManager;
 import org.apache.hadoop.hbase.client.HTable;  
+import org.apache.hadoop.hbase.client.HTableInterface;
 import org.apache.hadoop.hbase.client.Put;  
 import org.apache.hadoop.hbase.client.Result;  
 import org.apache.hadoop.hbase.client.ResultScanner;  
@@ -24,15 +27,22 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class BaseDao {
 	private static Configuration conf = null;
+	private static HConnection conn = null;
 	
 	public BaseDao(){
-		
 		setConf(null);
 		setConf(HBaseConfiguration.create());  
 		getConf().set("hbase.zookeeper.property.clientPort", "2181");  
 		getConf().set("hbase.zookeeper.quorum", "192.168.0.201");  
 		getConf().set("hbase.master", "192.168.0.201:600000"); 
 		System.out.println(getConf().get("hbase.zookeeper.quorum"));
+		
+		try {
+			conn = HConnectionManager.createConnection(getConf());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/*
@@ -61,7 +71,7 @@ public class BaseDao {
 	
 	public int addOneCellRecord (String tableName, String rowKey, String family, String qualifier, String value)throws Exception{       
 		try {       
-			HTable table = new HTable(getConf(), tableName); 
+			HTableInterface table = BaseDao.conn.getTable(tableName.getBytes());
 			
 			Put put = new Put(Bytes.toBytes(rowKey));       
 			put.add(Bytes.toBytes(family),Bytes.toBytes(qualifier),Bytes.toBytes(value));       
@@ -83,7 +93,7 @@ public class BaseDao {
 	
 	public int addCellsRecord (String tableName, String rowKey, String family[], String qualifier[], String value[])throws Exception{       
 		try {       
-			HTable table = new HTable(getConf(), tableName); 
+			HTableInterface table = BaseDao.conn.getTable(tableName.getBytes());
 			
 			Put put = new Put(Bytes.toBytes(rowKey));
 			for(int i=0; i < family.length; i++){
@@ -105,7 +115,7 @@ public class BaseDao {
 	 */
 	 @SuppressWarnings("unchecked")
 	public void delRecord (String tableName, String rowKey) throws IOException{       
-		HTable table = new HTable(getConf(), tableName);       
+		HTableInterface table = BaseDao.conn.getTable(tableName.getBytes()); 
 		
 		@SuppressWarnings("rawtypes")
 		List list = new ArrayList();       
@@ -121,7 +131,7 @@ public class BaseDao {
 	 * 参数 表名， 行键
 	 */
 	public Map<String, String> getOneRecord (String tableName, String rowKey) throws IOException{       
-		HTable table = new HTable(getConf(), tableName); 
+		HTableInterface table = BaseDao.conn.getTable(tableName.getBytes());
 		System.out.println(tableName + rowKey);
 		Get get = new Get(rowKey.getBytes());    
 		
@@ -159,7 +169,7 @@ public class BaseDao {
 	 * 参数 表名  行键   family name， column name 
 	 */
 	public Map<String, String> getOneCell (String tableName, String rowKey, String family, String column) throws IOException{
-		HTable table = new HTable(getConf(), tableName);
+		HTableInterface table = BaseDao.conn.getTable(tableName.getBytes());
 		Get get = new Get(rowKey.getBytes());
 		
 		Map<String, String> result = new HashMap<String, String>();
@@ -178,7 +188,7 @@ public class BaseDao {
 	public void getAllRecord (String tableName) throws IOException {       
 //		try{       
 		
-			HTable table = new HTable(getConf(), tableName);    
+			HTableInterface table = BaseDao.conn.getTable(tableName.getBytes());    
 			Scan s = new Scan();  
 			
 			ResultScanner ss = table.getScanner(s);
@@ -273,7 +283,7 @@ public class BaseDao {
 	}*/
 	
 	public int checkIsExist (String tableName, String rowKey) throws IOException{       
-		HTable table = new HTable(getConf(), tableName); 
+		HTableInterface table = BaseDao.conn.getTable(tableName.getBytes()); 
 
 		Get get = new Get(rowKey.getBytes());    
 		

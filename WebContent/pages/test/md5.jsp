@@ -44,7 +44,7 @@ document.getElementById("uploadfile").addEventListener("change", function() {
       
       //每块交由sparkMD5进行计算
       spark.appendBinary(e.target.result);
-      
+
       if(chunks<=3){
     	  currentChunk++;
           

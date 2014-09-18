@@ -1,6 +1,7 @@
 <%
-Object userId_ss = session.getAttribute("userId");
-if(userId_ss==null){
+Object id_ss = session.getAttribute("userId");
+//Object id_ss = session.getId();
+if(id_ss==null){
 	String contextPath = request.getContextPath();
 
 	//out.println("<script language='javascript'>");

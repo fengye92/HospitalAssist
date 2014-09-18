@@ -98,7 +98,7 @@ public class UserAction{
 	 *   */
 	
 	public String checkLogin() throws Exception{
-		user.setUserPasswd(MD5Hash(user.getUserPasswd()));
+		user.setUserPasswd(user.getUserPasswd());
 		this.user.setPermission(this.userService.checkLogin(user));
 		
 		if(this.user.getPermission() == 3){
@@ -127,7 +127,7 @@ public class UserAction{
 	public String addUser() throws Exception{
 		System.out.println(user.getPermission());
 		System.out.println(user.getUserName());
-		user.setUserPasswd(MD5Hash("000"));
+		user.setUserPasswd("000");
 
 		if(this.userService.addUser(user)==1){
 			
@@ -151,13 +151,12 @@ public class UserAction{
 
 	public String editPwd()throws Exception{
 		HttpSession session = ServletActionContext.getRequest().getSession();
-		String mdNewPwd = MD5Hash(newPwd);
 		
-		int rs=this.userService.editPwd((String)session.getAttribute("userId"), MD5Hash(exPwd),mdNewPwd);
+		int rs=this.userService.editPwd((String)session.getAttribute("userId"), exPwd,newPwd);
 		System.out.print(exPwd+newPwd);
 		if(rs==1){
 			System.out.println("修改成功");
-			session.setAttribute("userPwd", mdNewPwd);
+			session.setAttribute("userPwd", newPwd);
 			return "success";
 		}else{
 			// ServletActionContext.getRequest().setAttribute("result", "error");
@@ -210,39 +209,4 @@ public class UserAction{
 			return "error";
 		}
 	}
-	
-	private String MD5Hash(String input){
-		String result = "";
-		if(input != null){
-			try {
-				MessageDigest md = MessageDigest.getInstance("MD5");
-				byte[] results = md.digest(input.getBytes());   
-				String resultString = byteArrayToHexString(results);  
-                return resultString.toUpperCase(); 
-			} catch (NoSuchAlgorithmException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-		}
-		return result; 
-	}
-	
-	private static String byteArrayToHexString(byte[] b){  
-        StringBuffer resultSb = new StringBuffer();  
-        for (int i = 0; i < b.length; i++){  
-            resultSb.append(byteToHexString(b[i]));  
-        }  
-        return resultSb.toString();  
-    }  
-      
-    private static String byteToHexString(byte b){  
-    	final String[] hexDigits = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
-        int n = b;  
-        if (n < 0)  
-            n = 256 + n;  
-        int d1 = n / 16;  
-        int d2 = n % 16;  
-        return hexDigits[d1] + hexDigits[d2];  
-    }
 }
