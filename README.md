@@ -1,3 +1,7 @@
+Important
+==============
+The repository has moved to bitbucket and is a private repository now.
+
 HospitalAssist
 ==============
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/bootstrap.svg)](https://saucelabs.com/u/bootstrap)
